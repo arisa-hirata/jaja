@@ -2,11 +2,16 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
+<<<<<<< HEAD
       <router-link to="/about">About</router-link> |
       <router-link to="/signup">Signup</router-link> |
       <router-link to="/login">Login</router-link>
+=======
+      <router-link to="/products">Phonecases</router-link> |
+      <router-link to="/login">Login</router-link> |
+      <router-link to="/signup">SignUp</router-link>
+>>>>>>> 26abd34bf4358b62dd595eb0515ec81d6a2ac84e
     </div>
-    <router-view/>
   </div>
 </template>
 
