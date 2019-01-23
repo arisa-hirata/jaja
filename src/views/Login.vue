@@ -6,7 +6,6 @@
         <label for="username">Username</label>
         <input id="username" type="text" name="username" placeholder="Username">
       </p>
-      
       <p>
         <label for="password">Password</label>
         <input type="password" name="password" placeholder="Password">
