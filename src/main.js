@@ -12,6 +12,8 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 
+
+
 const config = {
   apiKey: "AIzaSyD8WSvyqRBJdb-5KYKyVWNM7L2lYKTQ-dE",
   authDomain: "jaja-97cfc.firebaseapp.com",
@@ -21,6 +23,7 @@ const config = {
   messagingSenderId: "757251250338"
 }
 firebase.initializeApp(config);
+
 
 new Vue({
   router,

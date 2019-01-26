@@ -3,7 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/products">Phonecases</router-link> |
-      <router-link to="/login">Login</router-link> |
+      <router-link to="/login">Login</router-link>|
       <router-link to="/signup">SignUp</router-link>
     </div>
     <router-view/>
@@ -12,7 +12,7 @@
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
