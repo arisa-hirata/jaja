@@ -1,48 +1,59 @@
 <template>
   <main>
     <div class="img-sec"></div>
-    
-      <form @submit.prevent="handleSubmit" class="signup" action="/action_page.php" style="max-width:500px;margin:auto">
-       
-        <h6>Have an account?
-          <a href>Login</a> here
-        </h6>
-        <div class="input-container">
-          <i class="fa fa-user icon">
-            <img src="../assets/user.png" alt>
-          </i>
-          <input class="input-field" type="text" placeholder="Username" name="usrnm">
-        </div>
 
-        <div class="input-container">
-          <i class="fa fa-envelope icon">
-            <img src="../assets/email.png" alt>
-          </i>
-          <input class="input-field" type="text" placeholder="Email" name="email">
-        </div>
+    <form
+      @submit.prevent="handleSubmit"
+      class="signup"
+      action="/action_page.php"
+      style="max-width:500px;margin:auto"
+    >
+      <h6>
+        Have an account?
+        <a href>Login</a> here
+      </h6>
+      <div class="input-container">
+        <i class="fa fa-user icon">
+          <img src="../assets/user.png" alt>
+        </i>
+        <input class="input-field" type="text" placeholder="Username" name="usrnm">
+      </div>
 
-        <div class="input-container">
-          <i class="fa fa-key icon">
-            <img src="../assets/pw.png" alt>
-          </i>
-          <input class="input-field" type="password" placeholder="Password" name="psw">
-        </div>
-        <div class="terms">
-          <input type="checkbox">I agree to the Terms and Conditions.
-        </div>
-        <button @click="SignUp" type="submit" class="btn">Signup</button>
-      </form>
-    
+      <div class="input-container">
+        <i class="fa fa-envelope icon">
+          <img src="../assets/email.png" alt>
+        </i>
+        <input class="input-field" type="text" placeholder="Email" name="email" v-model="email">
+      </div>
+
+      <div class="input-container">
+        <i class="fa fa-key icon">
+          <img src="../assets/pw.png" alt>
+        </i>
+        <input
+          class="input-field"
+          type="password"
+          placeholder="Password"
+          name="psw"
+          v-model="password"
+        >
+      </div>
+      <div class="terms">
+        <input type="checkbox">I agree to the Terms and Conditions.
+      </div>
+      <button @click="SignUp" type="submit" class="btn">Signup</button>
+    </form>
   </main>
 </template>
 <style>
 main {
-  width:auto;
+  width: auto;
   height: 80vh;
   margin: 5em;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  box-shadow: 0 4px 8px 0 rgba(136, 136, 136, 0.2), 0 6px 20px 0 rgba(192, 192, 192, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(136, 136, 136, 0.2),
+    0 6px 20px 0 rgba(192, 192, 192, 0.19);
 }
 .img-sec {
   width: 100%;
@@ -95,7 +106,8 @@ h6 {
 }
 
 /* Set a style for the submit button */
-.btn:hover, .btn:focus {
+.btn:hover,
+.btn:focus {
   color: #fff;
   outline: 0;
 }
@@ -103,8 +115,8 @@ h6 {
   background-color: #ff6b6b;
   box-sizing: border-box;
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   background-color: transparent;
   border: 1.5px solid #ff6b6b;
   border-radius: 2rem;
@@ -115,20 +127,20 @@ h6 {
   font-size: 1rem;
   font-weight: 200;
   line-height: 1;
-  
+
   text-decoration: none;
   text-align: center;
-  width:8rem;
-    transition:box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  width: 8rem;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
 
 .btn:hover {
   box-shadow: 0 0 40px 40px #ff604e inset;
 }
 
-.terms{
-    float: left;
-    padding: 15px;
+.terms {
+  float: left;
+  padding: 15px;
 }
 </style>
 
