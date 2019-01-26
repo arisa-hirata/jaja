@@ -37,12 +37,13 @@
 </template>
 <style>
 main {
-  width:auto;
+  width: auto;
   height: 80vh;
   margin: 5em;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  box-shadow: 0 4px 8px 0 rgba(136, 136, 136, 0.2), 0 6px 20px 0 rgba(192, 192, 192, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(136, 136, 136, 0.2),
+    0 6px 20px 0 rgba(192, 192, 192, 0.19);
 }
 .img-sec {
   width: 100%;
@@ -95,7 +96,8 @@ h6 {
 }
 
 /* Set a style for the submit button */
-.btn:hover, .btn:focus {
+.btn:hover,
+.btn:focus {
   color: #fff;
   outline: 0;
 }
@@ -103,8 +105,8 @@ h6 {
   background-color: #ff6b6b;
   box-sizing: border-box;
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   background-color: transparent;
   border: 1.5px solid #ff6b6b;
   border-radius: 2rem;
@@ -115,22 +117,22 @@ h6 {
   font-size: 1rem;
   font-weight: 200;
   line-height: 1;
-  
+
   text-decoration: none;
   text-align: center;
-  width:8rem;
-    transition:box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  width: 8rem;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
 
 .btn:hover {
   box-shadow: 0 0 40px 40px #ff604e inset;
 }
 
-.terms{
-    float: left;
-    padding: 15px;
+.terms {
+  float: left;
+  padding: 15px;
 }
-i {
+fa-user {
   color: #4A90E2;
 }
 </style>
