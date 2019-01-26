@@ -6,16 +6,16 @@
         </h6>
         <div class="input-container">
           <i class="fa fa-user icon">
-            <img src="../assets/user2.png" alt>
+           
           </i>
-          <input class="input-field" type="text" placeholder="Username" name="usrnm">
+          <input class="input-field" type="text" placeholder="Email adress" name="usrnm" v-model="email">
         </div>
 
         <div class="input-container">
           <i class="fa fa-key icon">
-            <img src="../assets/pw2.png" alt>
+           
           </i>
-          <input class="input-field" type="password" placeholder="Password" name="psw">
+          <input class="input-field" type="password" placeholder="Password" name="psw"  v-model="password">
         </div>
         <div class="rem"><input type="checkbox" /> Remember me</div>
         <button @click="SignIn" type="submit" class="btn">Login</button>
@@ -31,6 +31,7 @@
 </template>
 <style>
 main {
+  background-color: #FFF;
   width:auto;
   height: 80vh;
   margin: 5em;

@@ -9,23 +9,23 @@
         </h6>
         <div class="input-container">
           <i class="fa fa-user icon">
-            <img src="../assets/user.png" alt>
+           
           </i>
           <input class="input-field" type="text" placeholder="Username" name="usrnm">
         </div>
 
         <div class="input-container">
           <i class="fa fa-envelope icon">
-            <img src="../assets/email.png" alt>
+            
           </i>
-          <input class="input-field" type="text" placeholder="Email" name="email">
+          <input class="input-field" type="text" placeholder="Email" name="email" v-model="email">
         </div>
 
         <div class="input-container">
           <i class="fa fa-key icon">
-            <img src="../assets/pw.png" alt>
+           
           </i>
-          <input class="input-field" type="password" placeholder="Password" name="psw">
+          <input class="input-field" type="password" placeholder="Password" name="psw" v-model="password">
         </div>
         <div class="terms">
           <input type="checkbox">I agree to the Terms and Conditions.
@@ -129,6 +129,9 @@ h6 {
 .terms{
     float: left;
     padding: 15px;
+}
+i {
+  color: #4A90E2;
 }
 </style>
 
