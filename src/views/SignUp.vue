@@ -8,11 +8,11 @@
       </p>
       <p>
         <label for="email">Email</label>
-        <input id="email" type="email" name="email" placeholder="Email">
+        <input id="email" type="email" name="email" placeholder="Email" v-model="email">
       </p>
       <p>
         <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="password" placeholder="Password" v-model="password">
       </p>
       <p>
         <label for="repeatpw">Repeat Password</label>
@@ -23,8 +23,35 @@
         <label for="agree">I agree to terms and policy</label>
       </p>
       <p>
-        <input type="submit" value="Submit">
+        <button @click="SignUp">Submit</button>
       </p>
     </form>
   </div>
 </template>
+
+<script>
+import firebase from "firebase";
+
+export default {
+  name: "SignUp",
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    SignUp: function() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(email => {
+          alert("Your account is created");
+        })
+        .catch(error => {
+          alert(error.message);
+        });
+    }
+  }
+};
+</script>
