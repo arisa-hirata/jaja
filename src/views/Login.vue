@@ -5,15 +5,15 @@
           <a href>Signup</a> here
         </h6>
         <div class="input-container">
-          <i class="fa fa-user icon">
-           
+          <i class="fa fa-envelope icon">
+
           </i>
           <input class="input-field" type="text" placeholder="Email adress" name="usrnm" v-model="email">
         </div>
 
         <div class="input-container">
           <i class="fa fa-key icon">
-           
+
           </i>
           <input class="input-field" type="password" placeholder="Password" name="psw"  v-model="password">
         </div>

@@ -13,25 +13,26 @@
     <div class="product__info">
       <div class="title">
         <h1>Title</h1>
-        <input type="text" placeholder="Enter title here...">
+        <input type="text" placeholder="Enter title here..." v-model="title">
         <br>
         <span>
           <i class="fas fa-tag">Tag:</i>
         </span>
-        <input type="text" placeholder="Enter tag..">
+        <input type="text" placeholder="Enter tag.." v-model="tag">
       </div>
-      <div class="price">$
+      <div class="price">
+        $
         <span>
-          <input type="number" placeholder="Enter price here...">
+          <input type="number" placeholder="Enter price here..." v-model="price">
         </span>
       </div>
 
       <div class="description">
         <h3>Description</h3>
-        <textarea rows="4" cols="50" name="comment" form="usrform">
+        <textarea rows="4" cols="50" name="comment" form="usrform" v-model="desc">
 Enter description here...</textarea>
       </div>
-      <button class="buy--btn">Add Product</button>
+      <button class="buy--btn" @click="CreateItem">Add Product</button>
     </div>
   </section>
 </template>
@@ -161,3 +162,41 @@ h3 {
   transform: scale(0.97);
 }
 </style>
+
+<script>
+import firebase from "firebase";
+
+export default {
+  name: "Product",
+  data() {
+    return {
+      title: "",
+      tag: "",
+      price: "",
+      desc: ""
+    };
+  },
+
+  methods: {
+    CreateItem() {
+      const colref = firebase.firestore().collection("Product");
+
+      const saveData = {
+        title: this.title,
+        tag: this.tag,
+        price: this.tag,
+        desc: this.desc
+      };
+
+      colref
+        .add(saveData)
+        .then(function(docRef) {
+          console.log(docRef.id);
+        })
+        .catch(function(error) {
+          console.error(error);
+        });
+    }
+  }
+};
+</script>
