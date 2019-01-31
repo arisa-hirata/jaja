@@ -12,7 +12,7 @@
     </div>
     <div class="product__info">
       <div class="title">
-        <h1>Title</h1>
+        <h1>Title Test</h1>
         <input type="text" placeholder="Enter title here..." v-model="title">
         <br>
         <input type="file" name="myFile" multiple>
