@@ -184,7 +184,7 @@ export default {
       const saveData = {
         title: this.title,
         tag: this.tag,
-        price: this.tag,
+        price: this.price,
         desc: this.desc
       };
 
