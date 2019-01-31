@@ -21,8 +21,8 @@
         <button @click="SignIn" type="submit" class="btn">Login</button>
         <div class="login-box">
           <a href="#" class="social-button" id="facebook-connect"> <span>Login with Facebook</span></a>
-			<a href="#" class="social-button" id="google-connect"> <span>Login with Google</span></a>
-			<a href="#" class="social-button" id="twitter-connect"> <span>Login with Twitter</span></a>
+          <a href="#" class="social-button" id="google-connect"> <span>Login with Google</span></a>
+          <a href="#" class="social-button" id="twitter-connect"> <span>Login with Twitter</span></a>
       </div>
       <button @click="SignIn" type="submit" class="btn">Login</button>
       <div class="login-box">
@@ -296,30 +296,30 @@ h6 {
 }
 </style>
 <script>
-import firebase from "firebase";
+import firebase from 'firebase'
 export default {
-  name: "SignIn",
-  data: function() {
+  name: 'SignIn',
+  data: function () {
     return {
-      email: "",
-      password: ""
-    };
+      email: '',
+      password: ''
+    }
   },
   methods: {
-    SignIn: function() {
+    SignIn: function () {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(
           user => {
-            alert("Login Success");
-            this.$router.push("/");
+            alert('Login Success')
+            this.$router.push('/')
           },
           err => {
-            alert(err.message);
+            alert(err.message)
           }
-        );
+        )
     }
   }
-};
+}
 </script>
