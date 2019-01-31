@@ -15,6 +15,8 @@
         <h1>Title</h1>
         <input type="text" placeholder="Enter title here..." v-model="title">
         <br>
+        <input type="file" name="myFile" multiple>
+        <br>
         <span>
           <i class="fas fa-tag">Tag:</i>
         </span>
@@ -164,39 +166,39 @@ h3 {
 </style>
 
 <script>
-import firebase from "firebase";
+import firebase from 'firebase'
 
 export default {
-  name: "Product",
-  data() {
+  name: 'Product',
+  data () {
     return {
-      title: "",
-      tag: "",
-      price: "",
-      desc: ""
-    };
+      title: '',
+      tag: '',
+      price: '',
+      desc: ''
+    }
   },
 
   methods: {
-    CreateItem() {
-      const colref = firebase.firestore().collection("Product");
+    CreateItem () {
+      const colref = firebase.firestore().collection('Product')
 
       const saveData = {
         title: this.title,
         tag: this.tag,
         price: this.price,
         desc: this.desc
-      };
+      }
 
       colref
         .add(saveData)
-        .then(function(docRef) {
-          console.log(docRef.id);
+        .then(function (docRef) {
+          console.log(docRef.id)
         })
-        .catch(function(error) {
-          console.error(error);
-        });
+        .catch(function (error) {
+          console.error(error)
+        })
     }
   }
-};
+}
 </script>
