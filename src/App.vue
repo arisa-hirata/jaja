@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/products">Phonecases</router-link> |
+      <router-link to="/allcase">Allcases</router-link> |
       <router-link to="/login">Login</router-link>|
       <router-link to="/signup">SignUp</router-link>
     </div>

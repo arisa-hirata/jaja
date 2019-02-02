@@ -32,7 +32,7 @@
       <div class="description">
         <h3>Description</h3>
         <textarea rows="4" cols="50" name="comment" form="usrform" v-model="desc">
-Enter description here...</textarea>
+        Enter description here...</textarea>
       </div>
       <button class="buy--btn" @click="CreateItem">Add Product</button>
     </div>
