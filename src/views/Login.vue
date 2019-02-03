@@ -20,28 +20,22 @@
         <div class="rem"><input type="checkbox" /> Remember me</div>
         <button @click="SignIn" type="submit" class="btn">Login</button>
         <div class="login-box">
-          <a href="#" class="social-button" id="facebook-connect"> <span>Login with Facebook</span></a>
-          <a href="#" class="social-button" id="google-connect"> <span>Login with Google</span></a>
-          <a href="#" class="social-button" id="twitter-connect"> <span>Login with Twitter</span></a>
-      </div>
-      <button @click="SignIn" type="submit" class="btn">Login</button>
-      <div class="login-box">
-        <a href="#" class="social-button" id="facebook-connect">
-          <span>Login with Facebook</span>
-        </a>
-        <a href="#" class="social-button" id="google-connect">
-          <span>Login with Google</span>
-        </a>
-        <a href="#" class="social-button" id="twitter-connect">
-          <span>Login with Twitter</span>
-        </a>
-      </div>
+          <a href="#" class="social-button" id="facebook-connect">
+            <span>Login with Facebook</span>
+          </a>
+          <a href="#" class="social-button" id="google-connect">
+            <span>Login with Google</span>
+          </a>
+          <a href="#" class="social-button" id="twitter-connect">
+            <span>Login with Twitter</span>
+          </a>
+        </div>
     </form>
 
     <div class="img-sec"></div>
   </main>
 </template>
-<style>
+<style scoped>
 main {
   background-color: #FFF;
   width:auto;

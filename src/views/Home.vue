@@ -1,20 +1,19 @@
 <template>
   <div class="home">
     <div class="jumbotron jumbotron-banner">
-      <div class="container">
         <h2><span class="pinkspan">JAJA</span></h2>
         <h1>Our design is a language, <br>not a style.</h1>
-        <p><a class="btn-shop" href="#" role="button">Shop Our Products</a></p>
-      </div>
+        <a class="btn-shop" href="#" role="button">Shop Our Products</a>
     </div>
 
     <div class="row">
-      <div class="container-center">
+      <div class="container">
       <div class="column">
         <a href="#">
         <div class="card">
           <img src="../assets/thumb1.png" alt="thumb1"/>
           <p>Case 1</p>
+          <hr>
         </div>
         </a>
       </div>
@@ -24,6 +23,7 @@
         <div class="card">
           <img src="../assets/thumb2.png" alt="thumb1"/>
           <p>Case 2</p>
+          <hr>
         </div>
         </a>
       </div>
@@ -33,6 +33,7 @@
         <div class="card">
           <img src="../assets/thumb3.png" alt="thumb1"/>
           <p>Case 3</p>
+          <hr>
         </div>
         </a>
       </div>
@@ -40,16 +41,15 @@
     </div>
 
     <div class="jumbotron jumbotron-bottom">
-      <div class="container">
+      <div class="container-bottom">
         <h2>Several <span class="pinkspan">Unique Designs</span> for <br>you to choose</h2>
-
         <h3>Getting tired of the same cases?<br>It's time to dump them.</h3>
       </div>
     </div>
 
     <div class="card card-subscribe">
         <h5 class="card-header">Subscribe for new stuff</h5>
-        <hr color="#ffffff" width="20px">
+        <hr class="white">
         <div class="card-body">
           <p class="card-text">We won't send you any junk. Just update you with new products and events.</p>
         </div>
@@ -61,11 +61,8 @@
 
   </div>
 </template>
-<style>
+<style scoped>
 
-.home {
-  background-color: white;
-}
 .home h2 {
   color:#000000;
   margin:0.2em;
@@ -84,11 +81,13 @@
 .jumbotron-banner {
   background-image: url("../assets/bg1.png");
   background-size: cover;
-  height: 100%;
   padding-top: 30%;
-  padding-bottom: 5%;
   padding-left: 5%;
+  margin-bottom: 0;
   text-align: left;
+}
+.jumbotron-banner h1 {
+  margin-bottom: 5%;
 }
 .btn-shop {
   padding: 20px;
@@ -103,24 +102,17 @@
 
 .row {
   margin: 0;
-  padding: 5%;
-  padding-left: 12%;
-  padding-right: 12%;
+  padding: 0 0 7% 0;
   background-color: #f1f1f1;
 }
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-.container-center {
-  justify-content: center;
-  background-color: pink;
+.row .container{
+  max-width: 100%;
+  padding: 0;
 }
 .column {
-  float: left;
-  width: 23%;
-  height: 100%;
+  display: inline-flex;
+  width: 27%;
+  margin: 7% 1% 0 0;
   padding: 0 10px;
 }
 .column a {
@@ -134,18 +126,22 @@
     margin-bottom: 20px;
   }
 }
-.card {
+.row .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
-  text-align: center;
   background-color: #ffffff;
   transition: 1s;
+  align-items: center;
 }
-.column .card:hover {
+hr {
+  width: 30px;
+  border: 3px solid #ff6b6b;
+}
+.row .card:hover {
   transform:scale(1.1);
   transition: 1s;
 }
-.card img {
+.row .card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -160,7 +156,7 @@
   padding-left: 5%;
   text-align: left;
 }
-.jumbotron-bottom .container {
+.container-bottom {
   background-color: #ffffff;
   position: absolute;
   left: 0;
@@ -171,14 +167,21 @@
   width: 90%;
   background-color: #ff6b6b;
   border-radius: 0.5em;
-  padding-bottom: 50px;
-  margin-top: -10%;
+  padding-bottom: 80px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  align-items: center;
 }
 .card-header {
   color: #ffffff;
+  background-color: rgba(0,0,0,0);
+  border: none;
   font-size: 30pt;
   margin-top: 5%;
-  margin-bottom: 0;
+}
+.white{
+  width: 30px;
+  border: 3px solid#ffffff;
 }
 .card-text {
   color: #ffffff;
@@ -197,6 +200,9 @@
   background-color: #579bf5;
   cursor: pointer;
   text-decoration: none;
+}
+.input-group{
+  justify-content: center;
 }
 .form-sub {
   width: 40%;

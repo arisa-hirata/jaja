@@ -1,29 +1,29 @@
 <template>
   <main>
     <div class="img-sec"></div>
-    
+
       <form @submit.prevent="handleSubmit" class="signup" action="/action_page.php" style="max-width:500px;margin:auto">
-       
+
         <h6>Have an account?
           <a href>Login</a> here
         </h6>
         <div class="input-container">
           <i class="fa fa-user icon">
-           
+
           </i>
           <input class="input-field" type="text" placeholder="Username" name="usrnm">
         </div>
 
         <div class="input-container">
           <i class="fa fa-envelope icon">
-            
+
           </i>
           <input class="input-field" type="text" placeholder="Email" name="email" v-model="email">
         </div>
 
         <div class="input-container">
           <i class="fa fa-key icon">
-           
+
           </i>
           <input class="input-field" type="password" placeholder="Password" name="psw" v-model="password">
         </div>
@@ -32,10 +32,10 @@
         </div>
         <button @click="SignUp" type="submit" class="btn">Signup</button>
       </form>
-    
+
   </main>
 </template>
-<style>
+<style scoped>
 main {
   width: auto;
   height: 80vh;
@@ -138,28 +138,28 @@ fa-user {
 </style>
 
 <script>
-import firebase from "firebase";
+import firebase from 'firebase'
 
 export default {
-  name: "SignUp",
-  data() {
+  name: 'SignUp',
+  data () {
     return {
-      email: "",
-      password: ""
-    };
+      email: '',
+      password: ''
+    }
   },
   methods: {
-    SignUp: function() {
+    SignUp: function () {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(email => {
-          alert("Your account is created");
+          alert('Your account is created')
         })
         .catch(error => {
-          alert(error.message);
-        });
+          alert(error.message)
+        })
     }
   }
-};
+}
 </script>

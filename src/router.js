@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-
+import Allcase from './views/Allcase.vue'
 import Login from './views/Login.vue'
 import SignUp from './views/SignUp.vue'
 import Products from './views/Products.vue'
@@ -18,10 +18,14 @@ export default new Router({
       component: Home
     },
     {
-
       path: '/products',
       name: 'products',
       component: Products
+    },
+    {
+      path: '/allcase',
+      name: 'allcase',
+      component: Allcase
     },
     {
       path: '/login',

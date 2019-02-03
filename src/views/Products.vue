@@ -12,10 +12,23 @@
     </div>
     <div class="product__info">
       <div class="title">
-        <h1>Title</h1>
-        <input type="text" placeholder="Enter title here..." v-model="title">
+        <h1>Title Test</h1>
+        <input type="text" placeholder="Enter title here..." v-model="title" required>
         <br>
-        <input type="file" name="myFile" multiple>
+
+        <button @click="onPickFile">Upload Image</button>
+        <input
+          type="file"
+          name="myFile"
+          multiple
+          style="display: none"
+          ref="fileInput"
+          accept="image/*"
+          @change="onFilePicked"
+        >
+        <br>
+
+        <!-- <img src=> -->
         <br>
         <span>
           <i class="fas fa-tag">Tag:</i>
@@ -32,7 +45,7 @@
       <div class="description">
         <h3>Description</h3>
         <textarea rows="4" cols="50" name="comment" form="usrform" v-model="desc">
-Enter description here...</textarea>
+        Enter description here...</textarea>
       </div>
       <button class="buy--btn" @click="CreateItem">Add Product</button>
     </div>
@@ -166,39 +179,82 @@ h3 {
 </style>
 
 <script>
-import firebase from 'firebase'
+import firebase from "firebase";
 
 export default {
-  name: 'Product',
-  data () {
+  name: "Product",
+  data() {
     return {
-      title: '',
-      tag: '',
-      price: '',
-      desc: ''
-    }
+      title: "",
+      imageUrl: "",
+      tag: "",
+      price: "",
+      desc: "",
+      date: new Date(),
+      time: new Date()
+    };
   },
 
   methods: {
-    CreateItem () {
-      const colref = firebase.firestore().collection('Product')
+    onPickFile() {
+      this.$refs.fileInput.click();
+    },
+    onFilePicked(event) {
+      const files = event.target.files;
+      let filename = files[0].name;
+      console.log(filename);
+      if (filename.lastIndexOf(".") <= 0) {
+        return alert("Please add va valid file!");
+      }
+      const fileReader = new FileReader();
+      fileReader.addEventListener("load", () => {
+        this.imageUrl = fileReader.result;
+        console.log(this.imageUrl);
+      });
+      fileReader.readAsDataURL(files[0]);
+      this.image = files[0];
+      console.log(this.image);
+    },
+
+    CreateItem() {
+      if (!this.image) {
+        return;
+      }
+
+      var storageRef = firebase.storage().ref();
+
+      var mountainsRef = storageRef.child(`images/${this.filename}`);
+
+      mountainsRef.put(this.imageFile).then(snapshot => {
+        snapshot.ref.getDownloadURL().then(downloadURL => {
+          this.imageUrl = downloadURL;
+          firebase
+            .firestore()
+            .collection("Product")
+            .add({ downloadURL });
+        });
+      });
+
+      const colref = firebase.firestore().collection("Product");
 
       const saveData = {
         title: this.title,
+        image: this.image,
         tag: this.tag,
         price: this.price,
         desc: this.desc
-      }
+      };
 
       colref
         .add(saveData)
-        .then(function (docRef) {
-          console.log(docRef.id)
+        .then(function(docRef) {
+          console.log(docRef.id);
         })
-        .catch(function (error) {
-          console.error(error)
-        })
+        .catch(function(error) {
+          console.error(error);
+        });
+      // this.$router.push("/allcase");
     }
   }
-}
+};
 </script>
