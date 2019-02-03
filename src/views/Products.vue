@@ -1,206 +1,145 @@
 <template>
-  <section class="product">
-    <div class="product__photo">
-      <div class="photo-container">
-        <div class="photo-main">
-          <div class="controls">
-            <i class="far fa-heart"></i>
+  <section class="phonecase">
+    <div class="add-photo">
+          <div class="photo_main">
+            <img class="imgpreview" v-if="imgfile" :src="imgfile" />
+            <input class="addimage" type="file" name="myFile" @change="onFileChange">
           </div>
-          <img class="caseimage" src="../assets/case1wobg.png" alt="casesimage">
-        </div>
-      </div>
     </div>
-    <div class="product__info">
-      <div class="title">
-        <h1>Title Test</h1>
+    <div class="info-container">
+      <div class="info">
 
-        <input type="text" placeholder="Enter title here..." v-model="title" required>
-
-        <br>
-
-        <button @click="onPickFile">Upload Image</button>
-        <input
-          type="file"
-          name="myFile"
-          multiple
-          style="display: none"
-          ref="fileInput"
-          accept="image/*"
-          @change="onFilePicked"
-        >
-        <br>
-
-        <!-- <img src=> -->
-        <br>
+        <h1><input type="text" placeholder="Enter title here..." v-model="title"></h1>
+        
+        <h4>$<span><input type="number" placeholder="0.00" v-model="price"></span></h4>
         <span>
-          <i class="fas fa-tag">Tag:</i>
+          <i class="fas fa-tag"/>
+          <input type="text" placeholder="Enter tag.." v-model="tag">
         </span>
-        <input type="text" placeholder="Enter tag.." v-model="tag">
-      </div>
-      <div class="price">
-        $
-        <span>
-          <input type="number" placeholder="Enter price here..." v-model="price">
-        </span>
-      </div>
 
-      <div class="description">
-        <h3>Description</h3>
-        <textarea rows="4" cols="50" name="comment" form="usrform" v-model="desc">
-        Enter description here...</textarea>
+        <br>
+        <br>
+
+        <h6>
+          <textarea rows="4" cols="50" name="comment" form="usrform" v-model="desc" placeholder="Enter description here..."></textarea>
+        </h6>
+
+        <br>
+
+        <b-button class="addproduct"><i class="fa fa-plus" aria-hidden="true"></i> Add Product</b-button>	
       </div>
-      <button class="buy--btn" @click="CreateItem">Add Product</button>
     </div>
   </section>
 </template>
-<style>
-* {
-  box-sizing: border-box;
+<style scoped>
+section {
+  width: 100%;
+  margin: 4em auto;
+  position: fixed;
+  z-index: 1;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
 }
 
-body {
-  display: grid;
-  grid-template-rows: 1fr;
-  font-family: "Raleway", sans-serif;
-  background-color: #ffeee7;
-}
-
-h3 {
-  font-size: 0.7em;
-  letter-spacing: 1.2px;
-  color: #a6a6a6;
-}
-
-.detailpic {
-  max-width: 100%;
-  -webkit-filter: drop-shadow(1px 1px 3px #a6a6a6);
-  filter: drop-shadow(1px 1px 3px #a6a6a6);
-}
-
-/* ----- Product Section ----- */
-.product {
-  display: grid;
-  grid-template-columns: 0.7fr 1fr;
-  margin: auto;
-  padding: 8em;
-  min-width: 400px;
-  background-color: white;
-  border-radius: 5px;
+h4 {
+  color:#E91E63;
 }
 
 /* ----- Photo Section ----- */
-.product__photo {
-  position: relative;
-}
 
-.photo-container {
-  position: absolute;
-  left: -2.5em;
-  display: grid;
-  grid-template-columns: 1fr;
-  width: 100%;
-  height: 100%;
-  border-radius: 6px;
+.add-photo {
+  width: 30%;
+  display: inline-block;
+  margin: 0;
   box-shadow: 4px 4px 22px -2px rgba(0, 0, 0, 0.3);
-}
-
-.photo-main {
-  border-radius: 6px 6px 6px 6px;
+  border-radius: 6px 0px 0px 6px;
   background-color: #f8b8b9;
-  background: radial-gradient(rgb(255, 172, 174), #f8b8b9);
 }
-.photo-main .controls {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.8em;
-  color: #fff;
+.addimage {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 10% 10%;
 }
-.photo-main .controls i {
-  cursor: pointer;
-}
-.photo-main img {
-  position: relative;
-  padding: 1em;
-  max-width: 12em;
+.imgpreview {
+  width: 50%;
+  padding: 10% 0;
   -webkit-filter: saturate(150%) contrast(120%) hue-rotate(10deg)
     drop-shadow(1px 20px 10px rgba(0, 0, 0, 0.3));
   filter: saturate(150%) contrast(120%) hue-rotate(10deg)
     drop-shadow(1px 20px 10px rgba(0, 0, 0, 0.3));
 }
 
-/* ----- Informations Section ----- */
-.product__info {
-  padding: 0.8em 0;
-}
+/* ----- Info Section ----- */
 
-.title h1 {
-  margin-bottom: 0.1em;
-  color: #4c4c4c;
-  font-size: 1.5em;
-  font-weight: 900;
+.info-container {
+  width: 60%;
+  vertical-align: top;
+  margin-top: -10px;
+  display: inline-block;
+  padding: 10% 5%;
+  text-align: left;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px 0 rgba(114, 113, 113, 0.2),
+    0 6px 20px 0 rgba(141, 140, 140, 0.19);
 }
-.title span {
-  font-size: 0.7em;
-  color: #a6a6a6;
-}
-
-.price {
-  margin: 1.5em 0;
-  color: #ff3f40;
-  font-size: 0.5rem;
-}
-.price span {
-  padding-left: 0.15em;
-  font-size: 2.9em;
-}
-
-.description {
-  clear: left;
-  margin: 2em 0;
-}
-.description h3 {
-  margin-bottom: 1em;
-}
-
-.buy--btn {
-  padding: 1.5em 3.1em;
-  border: none;
-  border-radius: 7px;
-  font-size: 0.8em;
-  font-weight: 700;
-  letter-spacing: 1.3px;
+.addproduct {
   color: #fff;
-  background-color: #ff3f40;
-  box-shadow: 2px 2px 25px -7px #4c4c4c;
-  cursor: pointer;
+  border: none;
+  background: #E91E63;
 }
-.buy--btn:active {
-  -webkit-transform: scale(0.97);
-  transform: scale(0.97);
+.addproduct:hover {
+  border: none;
+  background: rgb(241, 113, 156);
+}
+
+@media screen and (max-width: 600px) {
+  section {
+    position: absolute;
+  }
+  .add-photo {
+    width: 100%;
+    display: block;
+  }
+  .info-container {
+    margin: 0;
+    width: 100%;
+  }
 }
 </style>
-
 <script>
-import firebase from "firebase";
-
+import Phonecase from "@/components/Phonecase.vue";
+import firebase from 'firebase';
 export default {
-  name: "Product",
-  data() {
+	name:"Product",
+  components:{
+    ThePhonecase:Phonecase
+	},
+	data(){
     return {
-      title: "",
-      imageUrl: "",
-      tag: "",
-      price: "",
-      desc: "",
+      heart: true,
+      imgfile: null,
+      title: '',
+      tag: '',
+      price: '',
+      desc: '',
+      imageUrl: '',
       date: new Date(),
       time: new Date()
-    };
+    }
   },
+  methods:{
+    ChangeHeart:function (){
+      this.heart = !this.heart;
+    },
 
-  methods: {
+    onFileChange(e) {
+      const file = e.target.files[0];
+      this.imgfile = URL.createObjectURL(file);
+    },
+
     onPickFile() {
       this.$refs.fileInput.click();
     },
+
     onFilePicked(event) {
       const files = event.target.files;
       let filename = files[0].name;
@@ -258,5 +197,5 @@ export default {
       // this.$router.push("/allcase");
     }
   }
-};
+}
 </script>

@@ -9,7 +9,7 @@
     <div class="row">
       <div class="container">
       <div class="column">
-        <a href="#">
+        <a href="/allcase">
         <div class="card">
           <img src="../assets/thumb1.png" alt="thumb1"/>
           <p>Case 1</p>
@@ -19,7 +19,7 @@
       </div>
 
       <div class="column">
-        <a href="#">
+        <a href="/allcase">
         <div class="card">
           <img src="../assets/thumb2.png" alt="thumb1"/>
           <p>Case 2</p>
@@ -29,7 +29,7 @@
       </div>
 
       <div class="column">
-        <a href="#">
+        <a href="/allcase">
         <div class="card">
           <img src="../assets/thumb3.png" alt="thumb1"/>
           <p>Case 3</p>
@@ -87,7 +87,7 @@
   text-align: left;
 }
 .jumbotron-banner h1 {
-  margin-bottom: 5%;
+  margin-bottom: 3%;
 }
 .btn-shop {
   padding: 20px;
@@ -110,7 +110,7 @@
   padding: 0;
 }
 .column {
-  display: inline-flex;
+  display: inline-block;
   width: 27%;
   margin: 7% 1% 0 0;
   padding: 0 10px;
@@ -118,13 +118,6 @@
 .column a {
   text-decoration: none;
   color: #000000;
-}
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
-  }
 }
 .row .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -135,7 +128,8 @@
 }
 hr {
   width: 30px;
-  border: 3px solid #ff6b6b;
+  border: 1px solid #ff6b6b;
+  background-color: #ff6b6b;
 }
 .row .card:hover {
   transform:scale(1.1);
@@ -168,8 +162,8 @@ hr {
   background-color: #ff6b6b;
   border-radius: 0.5em;
   padding-bottom: 80px;
-  margin: 0 auto;
-  margin-bottom: 10px;
+  margin: 2em auto;
+  margin-top: -10em;
   align-items: center;
 }
 .card-header {
@@ -181,7 +175,7 @@ hr {
 }
 .white{
   width: 30px;
-  border: 3px solid#ffffff;
+  border: 1px solid#ffffff;
 }
 .card-text {
   color: #ffffff;
@@ -215,4 +209,29 @@ hr {
   font-size: 9pt;
 }
 
+@media screen and (max-width: 600px) {
+  .jumbotron-banner h1 {
+    margin-bottom: 10%;
+  }
+  .jumbotron-banner {
+    padding-bottom: 15%;
+  }
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+  .jumbotron-bottom {
+    margin-bottom: 0;
+  }
+  .container-bottom {
+    width: 90%;
+    padding: 5%;
+  }
+  .card-subscribe {
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 0;
+  }
+}
 </style>
