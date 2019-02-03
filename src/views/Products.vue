@@ -13,7 +13,9 @@
     <div class="product__info">
       <div class="title">
         <h1>Title Test</h1>
+
         <input type="text" placeholder="Enter title here..." v-model="title" required>
+
         <br>
 
         <button @click="onPickFile">Upload Image</button>
