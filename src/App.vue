@@ -1,16 +1,36 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <a href="/">
+    <b-navbar toggleable="md" id="nav">
+
+      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+
+      <b-navbar-brand href="/">
         <img class="logo" src="@/assets/logo.png" alt="logo"/>
-      </a> 
-      <router-link to="/">Home</router-link> 
-      <router-link to="/allcase">All Cases</router-link> 
-      <router-link to="/products">Create</router-link> 
-      <router-link class="signup-btn" to="/signup">Signup</router-link>
-      <router-link class="login-btn" to="/login">Login</router-link>
-    </div>
+      </b-navbar-brand>
+
+      <b-collapse is-nav id="nav_collapse">
+
+        <b-navbar-nav>
+          <b-nav-item>
+            <router-link to="/">Home</router-link></b-nav-item> 
+          <b-nav-item>
+            <router-link to="/allcase">All Cases</router-link>
+          </b-nav-item> 
+          <b-nav-item href="#">
+            <router-link to="/products">Create</router-link>
+          </b-nav-item> 
+        </b-navbar-nav>
+
+        <b-navbar-nav class="ml-auto">
+          <router-link class="login-btn" to="/login">Login</router-link>
+          <router-link class="signup-btn" to="/signup">Signup</router-link>
+        </b-navbar-nav>
+
+      </b-collapse>
+    </b-navbar>
+
     <router-view/>
+    
   </div>
 </template>
 
@@ -23,19 +43,16 @@
   color: #2c3e50;
 }
 #nav {
-  padding: 30px 70px;
+  padding: 20px 50px;
   text-align: left;
 }
 #nav a {
-  font-size: 14pt;
   font-weight: bold;
   color: #2c3e50;
-  margin-right: 40px;
-  vertical-align: bottom;
+  border-bottom: 3px solid#ffffff;
 }
 #nav a:hover {
   text-decoration: none;
-  border-bottom: 3px solid#ffffff;
 }
 #nav a.router-link-exact-active {
   color: #ff6b6b;
@@ -45,31 +62,56 @@
 }
 
 .logo {
-  width: 11%;
-  margin: 0;
-  margin-right: 5%;
+  width: 100px;
 }
 .login-btn {
   float: right;
-  padding: 10px 50px;
+  padding: 4px 20px;
   border-radius: 10em;
-  font-size: 11pt;
   letter-spacing: 1.3px;
   color: #ff6b6b !important;
   background-color: #ffffff;
   border: 1px solid #ff6b6b;
+  border-bottom: 3px solid#ff6b6b !important;
   cursor: pointer;
   text-decoration: none;
+  margin-right: 10px;
+}
+.login-btn:hover {
+  background-color: #fcf0f0;
 }
 .signup-btn {
   float: right;
-  padding: 10px 50px;
+  padding: 4px 20px;
   border-radius: 10em;
-  font-size: 11pt;
   letter-spacing: 1.3px;
   color: #ffffff !important;
   background-color: #ff6b6b;
+  border-bottom: 3px solid#ff6b6b !important;
   cursor: pointer;
   text-decoration: none;
+}
+.signup-btn:hover {
+  background-color: #fc8484;
+}
+.navbar .navbar-toggler {
+  border: none;
+}
+
+@media screen and (max-width: 768px) {
+  .logo {
+  width: 50px;
+  }
+  .navbar-nav{
+    padding-top: 18px;
+  }
+  .login-btn {
+    width: 100px;
+    margin:10px 0;
+  }
+  .signup-btn {
+    width: 100px;
+    margin-bottom: 20px;
+  }
 }
 </style>
