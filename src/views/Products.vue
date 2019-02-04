@@ -1,17 +1,32 @@
 <template>
   <section class="phonecase">
     <div class="add-photo">
-          <div class="photo_main">
-            <img class="imgpreview" v-if="imgfile" :src="imgfile" />
-            <input class="addimage" type="file" name="myFile" @change="onFileChange">
-          </div>
+      <div class="photo_main">
+        <img class="imgpreview" v-if="imageUrl" :src="imageUrl">
+        <button class="addimage" @click="onPickFile">Upload Image</button>
+        <input
+          type="file"
+          name="myFile"
+          multiple
+          style="display: none"
+          ref="fileInput"
+          accept="image/*"
+          @change="onFilePicked"
+        >
+      </div>
     </div>
     <div class="info-container">
       <div class="info">
+        <h1>
+          <input type="text" placeholder="Enter title here..." v-model="title">
+        </h1>
 
-        <h1><input type="text" placeholder="Enter title here..." v-model="title"></h1>
-        
-        <h4>$<span><input type="number" placeholder="0.00" v-model="price"></span></h4>
+        <h4>
+          $
+          <span>
+            <input type="number" placeholder="0.00" v-model="price">
+          </span>
+        </h4>
         <span>
           <i class="fas fa-tag"/>
           <input type="text" placeholder="Enter tag.." v-model="tag">
@@ -21,12 +36,21 @@
         <br>
 
         <h6>
-          <textarea rows="4" cols="50" name="comment" form="usrform" v-model="desc" placeholder="Enter description here..."></textarea>
+          <textarea
+            rows="4"
+            cols="50"
+            name="comment"
+            form="usrform"
+            v-model="desc"
+            placeholder="Enter description here..."
+          ></textarea>
         </h6>
 
         <br>
 
-        <b-button class="addproduct"><i class="fa fa-plus" aria-hidden="true"></i> Add Product</b-button>	
+        <b-button class="addproduct" @click="CreateItem">
+          <i class="fa fa-plus" aria-hidden="true"></i> Add Product
+        </b-button>
       </div>
     </div>
   </section>
@@ -41,7 +65,7 @@ section {
 }
 
 h4 {
-  color:#E91E63;
+  color: #e91e63;
 }
 
 /* ----- Photo Section ----- */
@@ -84,7 +108,7 @@ h4 {
 .addproduct {
   color: #fff;
   border: none;
-  background: #E91E63;
+  background: #e91e63;
 }
 .addproduct:hover {
   border: none;
@@ -107,33 +131,27 @@ h4 {
 </style>
 <script>
 import Phonecase from "@/components/Phonecase.vue";
-import firebase from 'firebase';
+import firebase from "firebase";
 export default {
-	name:"Product",
-  components:{
-    ThePhonecase:Phonecase
-	},
-	data(){
+  name: "Product",
+  components: {
+    ThePhonecase: Phonecase
+  },
+  data() {
     return {
       heart: true,
       imgfile: null,
-      title: '',
-      tag: '',
-      price: '',
-      desc: '',
-      imageUrl: '',
-      date: new Date(),
-      time: new Date()
-    }
+      title: "",
+      tag: "",
+      price: "",
+      desc: "",
+      imageUrl: "",
+      date: new Date()
+    };
   },
-  methods:{
-    ChangeHeart:function (){
+  methods: {
+    ChangeHeart: function() {
       this.heart = !this.heart;
-    },
-
-    onFileChange(e) {
-      const file = e.target.files[0];
-      this.imgfile = URL.createObjectURL(file);
     },
 
     onPickFile() {
@@ -158,10 +176,6 @@ export default {
     },
 
     CreateItem() {
-      if (!this.image) {
-        return;
-      }
-
       var storageRef = firebase.storage().ref();
 
       var mountainsRef = storageRef.child(`images/${this.filename}`);
@@ -183,7 +197,8 @@ export default {
         image: this.image,
         tag: this.tag,
         price: this.price,
-        desc: this.desc
+        desc: this.desc,
+        date: this.date
       };
 
       colref
@@ -197,5 +212,5 @@ export default {
       // this.$router.push("/allcase");
     }
   }
-}
+};
 </script>
