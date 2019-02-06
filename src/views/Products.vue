@@ -148,6 +148,9 @@ export default {
     };
   },
   methods: {
+    onPickFile() {
+      this.$refs.fileInput.click();
+    },
 
     onFilePicked(event) {
       const files = event.target.files;
