@@ -176,25 +176,25 @@ export default {
     },
 
     CreateItem() {
-      var storageRef = firebase.storage().ref();
+      // var storageRef = firebase.storage().ref();
 
-      var mountainsRef = storageRef.child(`images/${this.filename}`);
+      // var mountainsRef = storageRef.child(`images/${this.filename}`);
 
-      mountainsRef.put(this.imageFile).then(snapshot => {
-        snapshot.ref.getDownloadURL().then(downloadURL => {
-          this.imageUrl = downloadURL;
-          firebase
-            .firestore()
-            .collection("Product")
-            .add({ downloadURL });
-        });
-      });
+      // mountainsRef.put(this.imageFile).then(snapshot => {
+      //   snapshot.ref.getDownloadURL().then(downloadURL => {
+      //     this.imageUrl = downloadURL;
+      //     firebase
+      //       .firestore()
+      //       .collection("Product")
+      //       .add({ downloadURL });
+      //   });
+      // });
 
       const colref = firebase.firestore().collection("Product");
 
       const saveData = {
         title: this.title,
-        image: this.image,
+        // image: this.image,
         tag: this.tag,
         price: this.price,
         desc: this.desc,
