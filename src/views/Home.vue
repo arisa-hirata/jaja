@@ -209,7 +209,7 @@ hr {
   font-size: 9pt;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .jumbotron-banner h1 {
     margin-bottom: 10%;
   }
@@ -221,6 +221,10 @@ hr {
     display: block;
     margin-bottom: 20px;
   }
+  .row .card:hover {
+  transform:scale(1);
+  transition: 1s;
+}
   .jumbotron-bottom {
     margin-bottom: 0;
   }

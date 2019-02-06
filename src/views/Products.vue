@@ -139,8 +139,6 @@ export default {
   },
   data() {
     return {
-      heart: true,
-      imgfile: null,
       title: "",
       tag: "",
       price: "",
@@ -150,13 +148,6 @@ export default {
     };
   },
   methods: {
-    ChangeHeart: function() {
-      this.heart = !this.heart;
-    },
-
-    onPickFile() {
-      this.$refs.fileInput.click();
-    },
 
     onFilePicked(event) {
       const files = event.target.files;
