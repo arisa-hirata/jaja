@@ -1,6 +1,7 @@
 <template>
   <section class="allcase">
-    <ThePhonecase v-if="isActive===true"/>
+    <ThePhonecase v-if="isActive===true" :phonecase="selectedItem" @hide="isActive=false"/>
+
     <div class="wrapper">
       <div class="content">
         <!-- content here -->
@@ -8,18 +9,18 @@
           <div class="product-grid__wrapper">
             <!-- Product list start here -->
             <!-- Single product -->
-            <div class="product-grid__product-wrapper" v-for="p in phonecases">
-              <div class="product-grid__product" @click="ShowPhonecase">
+            <div class="product-grid__product-wrapper" v-for="p in phonecases" @click="ShowPhonecase(p)">
+              <div class="product-grid__product" >
                 <div class="product-grid__img-wrapper">
                   <img src="../assets/1.png" alt="Img" class="product-grid__img">
                 </div>
                 <span class="product-grid__title">{{p.title}}</span>
-                <span class="product-grid__price">$24.99</span>
+                <span class="product-grid__price">${{p.price}}</span>
                 <div class="product-grid__extend-wrapper">
                   <div class="product-grid__extend">
                     <p
                       class="product-grid__description"
-                    >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
+                    >{{p.desc}}</p>
                     <span class="product-grid__btn product-grid__add-to-cart">
                       <i class="fa fa-cart-arrow-down"></i> Add to cart
                     </span>
@@ -31,189 +32,7 @@
               </div>
             </div>
             <!-- end Single product -->
-            <div class="product-grid__product-wrapper" @click="ShowPhonecase">
-              <div class="product-grid__product">
-                <div class="product-grid__img-wrapper">
-                  <img src="../assets/2.png" alt="Img" class="product-grid__img">
-                </div>
-                <span class="product-grid__title">Product title</span>
-                <span class="product-grid__price">$24.99</span>
-                <div class="product-grid__extend-wrapper">
-                  <div class="product-grid__extend">
-                    <p
-                      class="product-grid__description"
-                    >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
-                    <span class="product-grid__btn product-grid__add-to-cart">
-                      <i class="fa fa-cart-arrow-down"></i> Add to cart
-                    </span>
-                    <span class="product-grid__btn product-grid__view">
-                      <i class="fa fa-eye"></i> View more
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="product-grid__product-wrapper" @click="ShowPhonecase">
-              <div class="product-grid__product">
-                <div class="product-grid__img-wrapper">
-                  <img src="../assets/3.png" alt="Img" class="product-grid__img">
-                </div>
-                <span class="product-grid__title">Product title</span>
-                <span class="product-grid__price">$24.99</span>
-                <div class="product-grid__extend-wrapper">
-                  <div class="product-grid__extend">
-                    <p
-                      class="product-grid__description"
-                    >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
-                    <span class="product-grid__btn product-grid__add-to-cart">
-                      <i class="fa fa-cart-arrow-down"></i> Add to cart
-                    </span>
-                    <span class="product-grid__btn product-grid__view">
-                      <i class="fa fa-eye"></i> View more
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="product-grid__product-wrapper" @click="ShowPhonecase">
-              <div class="product-grid__product">
-                <div class="product-grid__img-wrapper">
-                  <img src="../assets/1.png" alt="Img" class="product-grid__img">
-                </div>
-                <span class="product-grid__title">Product title</span>
-                <span class="product-grid__price">$24.99</span>
-                <div class="product-grid__extend-wrapper">
-                  <div class="product-grid__extend">
-                    <p
-                      class="product-grid__description"
-                    >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
-                    <span class="product-grid__btn product-grid__add-to-cart">
-                      <i class="fa fa-cart-arrow-down"></i> Add to cart
-                    </span>
-                    <span class="product-grid__btn product-grid__view">
-                      <i class="fa fa-eye"></i> View more
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="product-grid__product-wrapper" @click="ShowPhonecase">
-              <div class="product-grid__product">
-                <div class="product-grid__img-wrapper">
-                  <img src="../assets/2.png" alt="Img" class="product-grid__img">
-                </div>
-                <span class="product-grid__title">Product title</span>
-                <span class="product-grid__price">$24.99</span>
-                <div class="product-grid__extend-wrapper">
-                  <div class="product-grid__extend">
-                    <p
-                      class="product-grid__description"
-                    >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
-                    <span class="product-grid__btn product-grid__add-to-cart">
-                      <i class="fa fa-cart-arrow-down"></i> Add to cart
-                    </span>
-                    <span class="product-grid__btn product-grid__view">
-                      <i class="fa fa-eye"></i> View more
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="product-grid__product-wrapper" @click="ShowPhonecase">
-              <div class="product-grid__product">
-                <div class="product-grid__img-wrapper">
-                  <img src="../assets/3.png" alt="Img" class="product-grid__img">
-                </div>
-                <span class="product-grid__title">Product title</span>
-                <span class="product-grid__price">$24.99</span>
-                <div class="product-grid__extend-wrapper">
-                  <div class="product-grid__extend">
-                    <p
-                      class="product-grid__description"
-                    >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
-                    <span class="product-grid__btn product-grid__add-to-cart">
-                      <i class="fa fa-cart-arrow-down"></i> Add to cart
-                    </span>
-                    <span class="product-grid__btn product-grid__view">
-                      <i class="fa fa-eye"></i> View more
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="product-grid__product-wrapper" @click="ShowPhonecase">
-              <div class="product-grid__product">
-                <div class="product-grid__img-wrapper">
-                  <img src="../assets/1.png" alt="Img" class="product-grid__img">
-                </div>
-                <span class="product-grid__title">Product title</span>
-                <span class="product-grid__price">$24.99</span>
-                <div class="product-grid__extend-wrapper">
-                  <div class="product-grid__extend">
-                    <p
-                      class="product-grid__description"
-                    >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
-                    <span class="product-grid__btn product-grid__add-to-cart">
-                      <i class="fa fa-cart-arrow-down"></i> Add to cart
-                    </span>
-                    <span class="product-grid__btn product-grid__view">
-                      <i class="fa fa-eye"></i> View more
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="product-grid__product-wrapper" @click="ShowPhonecase">
-              <div class="product-grid__product">
-                <div class="product-grid__img-wrapper">
-                  <img src="../assets/2.png" alt="Img" class="product-grid__img">
-                </div>
-                <span class="product-grid__title">Product title</span>
-                <span class="product-grid__price">$24.99</span>
-                <div class="product-grid__extend-wrapper">
-                  <div class="product-grid__extend">
-                    <p
-                      class="product-grid__description"
-                    >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
-                    <span class="product-grid__btn product-grid__add-to-cart">
-                      <i class="fa fa-cart-arrow-down"></i> Add to cart
-                    </span>
-                    <span class="product-grid__btn product-grid__view">
-                      <i class="fa fa-eye"></i> View more
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="product-grid__product-wrapper" @click="ShowPhonecase">
-              <div class="product-grid__product">
-                <div class="product-grid__img-wrapper">
-                  <img src="../assets/3.png" alt="Img" class="product-grid__img">
-                </div>
-                <span class="product-grid__title">Product title</span>
-                <span class="product-grid__price">$24.99</span>
-                <div class="product-grid__extend-wrapper">
-                  <div class="product-grid__extend">
-                    <p
-                      class="product-grid__description"
-                    >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
-                    <span class="product-grid__btn product-grid__add-to-cart">
-                      <i class="fa fa-cart-arrow-down"></i> Add to cart
-                    </span>
-                    <span class="product-grid__btn product-grid__view">
-                      <i class="fa fa-eye"></i> View more
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -462,19 +281,36 @@ export default {
   },
   data() {
     return {
+      selectedItem: {},
       isActive: false,
       phonecases: [
         {
-          title: "Product 1"
+          title: "Upper Case",
+          price: "24.99",
+          tag: "bright",
+          desc: "This is a unique design made for users who favour simple, yet bold designs.",
+          date: "February 1, 2019"
         },
         {
-          title: "Product 2"
-        }
+          title: "Lower Case",
+          price: "15.40",
+          tag: "dark",
+          desc: "This heavy design was inspired by the deep emotions felt by others.",
+          date: "February 2, 2019"
+        },
+        {
+          title: "The Shift",
+          price: "17",
+          tag: "duo",
+          desc: "This cool multi-coloured design represents the two side of a person.",
+          date: "February 3, 2019"
+        },
       ]
     };
   },
   methods: {
-    ShowPhonecase: function() {
+    ShowPhonecase: function(p) {
+      this.selectedItem = p
       this.isActive = !this.isActive;
     }
   }
