@@ -1,36 +1,33 @@
 <template>
   <div id="app">
     <b-navbar toggleable="md" id="nav">
-
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
       <b-navbar-brand href="/">
-        <img class="logo" src="@/assets/logo.png" alt="logo"/>
+        <img class="logo" src="@/assets/logo.png" alt="logo">
       </b-navbar-brand>
 
       <b-collapse is-nav id="nav_collapse">
-
         <b-navbar-nav>
           <b-nav-item>
-            <router-link to="/">Home</router-link></b-nav-item> 
+            <router-link to="/">Home</router-link>
+          </b-nav-item>
           <b-nav-item>
             <router-link to="/allcase">All Cases</router-link>
-          </b-nav-item> 
+          </b-nav-item>
           <b-nav-item href="#">
             <router-link to="/products">Create</router-link>
-          </b-nav-item> 
+          </b-nav-item>
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
           <router-link class="login-btn" to="/login">Login</router-link>
           <router-link class="signup-btn" to="/signup">Signup</router-link>
         </b-navbar-nav>
-
       </b-collapse>
     </b-navbar>
 
     <router-view/>
-    
   </div>
 </template>
 
@@ -56,7 +53,7 @@
 }
 #nav a.router-link-exact-active {
   color: #ff6b6b;
-  border-bottom: 3px solid#ff6b6b;
+  border-bottom: 3px solid #ff6b6b;
   text-decoration: none;
   transition: 0.5s ease-in-out;
 }
@@ -100,14 +97,14 @@
 
 @media screen and (max-width: 768px) {
   .logo {
-  width: 50px;
+    width: 50px;
   }
-  .navbar-nav{
+  .navbar-nav {
     padding-top: 18px;
   }
   .login-btn {
     width: 100px;
-    margin:10px 0;
+    margin: 10px 0;
   }
   .signup-btn {
     width: 100px;
