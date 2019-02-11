@@ -5,7 +5,7 @@ import Allcase from './views/Allcase.vue'
 import Login from './views/Login.vue'
 import SignUp from './views/SignUp.vue'
 import Products from './views/Products.vue'
-
+import Cart from './views/Cart.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -36,6 +36,11 @@ export default new Router({
       path: '/signup',
       name: 'signup',
       component: SignUp
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: Cart
     },
     {
       path: '/about',

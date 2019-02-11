@@ -21,6 +21,7 @@
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
+          <router-link class="login-btn" to="/cart"><i class="fas fa-shopping-cart"></i></router-link>
           <router-link class="login-btn" to="/login">Login</router-link>
           <router-link class="signup-btn" to="/signup">Signup</router-link>
         </b-navbar-nav>

@@ -6,23 +6,25 @@
           </div>
     </div>
     <div class="info-container">
+      <div class="close" @click="CloseModal">x</div>
+      
       <div class="info">
         <div class="controls" @click="ChangeHeart">
               <i class="far fa-heart" aria-hidden="true" v-if="heart===true"></i>
               <i class="fa fa-heart" aria-hidden="true" v-if="heart===false"></i>
         </div>
 
-        <h1>Phonecase Title</h1>
+        <h1>{{phonecase.title}}</h1>
         
-        <h4>$<span>24.99</span></h4>
+        <h4>$<span>{{phonecase.price}}</span></h4>
         <span>
-          <i class="fas fa-tag"/> Tag
+          <i class="fas fa-tag"/> {{phonecase.tag}}
         </span>
 
         <br>
         <br>
 
-        <h6>This phone case is designed by Juno Guo. It represents something great.</h6>
+        <h6>{{phonecase.desc}}</h6>
         <br>
         <b-button class="add-to-cart"><i class="fa fa-cart-arrow-down"></i> Add to cart</b-button>	
       </div>
@@ -74,6 +76,12 @@ h4 {
   box-shadow: 0 4px 8px 0 rgba(114, 113, 113, 0.2),
     0 6px 20px 0 rgba(141, 140, 140, 0.19);
 }
+.close {
+  float: none;
+  text-align: right;
+  margin-top: -15%;
+  margin-bottom: 10%;
+}
 .controls {
   float: right;
 }
@@ -90,7 +98,7 @@ h4 {
   background: rgb(241, 113, 156);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   section {
     position: absolute;
   }
@@ -102,23 +110,36 @@ h4 {
     margin: 0;
     width: 100%;
   }
+  .close {
+    margin: 0;
+    position: absolute;
+    top: 30px;
+  }
 }
 </style>
 <script>
-import Phonecase from "@/components/Phonecase.vue";
 export default {
-	name:"allcase",
-  components:{
-    ThePhonecase:Phonecase
-	},
+  name:"phonecase",
 	data(){
     return {
-      heart: true
+      heart: true,
     }
+  },
+  props: {
+   phonecase: {
+    type: Object,
+    default() {
+            return [];
+        }
+   }
   },
   methods:{
     ChangeHeart:function (){
       this.heart = !this.heart
+    },
+
+    CloseModal:function (){
+      this.$emit('hide');
     }
   }
 }
