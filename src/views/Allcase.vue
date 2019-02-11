@@ -9,8 +9,12 @@
           <div class="product-grid__wrapper">
             <!-- Product list start here -->
             <!-- Single product -->
-            <div class="product-grid__product-wrapper" v-for="p in phonecases" @click="ShowPhonecase(p)">
-              <div class="product-grid__product" >
+            <div
+              class="product-grid__product-wrapper"
+              v-for="p in phoneCases"
+              @click="ShowPhonecase(p)"
+            >
+              <div class="product-grid__product">
                 <div class="product-grid__img-wrapper">
                   <img src="../assets/1.png" alt="Img" class="product-grid__img">
                 </div>
@@ -18,9 +22,7 @@
                 <span class="product-grid__price">${{p.price}}</span>
                 <div class="product-grid__extend-wrapper">
                   <div class="product-grid__extend">
-                    <p
-                      class="product-grid__description"
-                    >{{p.desc}}</p>
+                    <p class="product-grid__description">{{p.desc}}</p>
                     <span class="product-grid__btn product-grid__add-to-cart">
                       <i class="fa fa-cart-arrow-down"></i> Add to cart
                     </span>
@@ -32,7 +34,6 @@
               </div>
             </div>
             <!-- end Single product -->
-            
           </div>
         </div>
       </div>
@@ -41,6 +42,84 @@
     </div>
   </section>
 </template>
+
+
+<script>
+import Phonecase from "@/components/Phonecase.vue";
+import firebase from "firebase";
+
+export default {
+  name: "allcase",
+  components: {
+    ThePhonecase: Phonecase
+  },
+  data() {
+    return {
+      selectedItem: {},
+      isActive: false,
+      phonecases: [
+        {
+          title: "Upper Case",
+          price: "24.99",
+          tag: "bright",
+          desc:
+            "This is a unique design made for users who favour simple, yet bold designs.",
+          date: "February 1, 2019"
+        },
+        {
+          title: "Lower Case",
+          price: "15.40",
+          tag: "dark",
+          desc:
+            "This heavy design was inspired by the deep emotions felt by others.",
+          date: "February 2, 2019"
+        },
+        {
+          title: "The Shift",
+          price: "17",
+          tag: "duo",
+          desc:
+            "This cool multi-coloured design represents the two side of a person.",
+          date: "February 3, 2019"
+        }
+      ],
+      phoneCases: [],
+      loading: true
+    };
+  },
+  created() {
+    firebase
+      .firestore()
+      .collection("Product")
+      .get()
+      .then(querySnapshot => {
+        this.loading = false;
+        querySnapshot.forEach(doc => {
+          let data = {
+            id: doc.id,
+            title: doc.data().title,
+            tag: doc.data().tag,
+            price: doc.data().price,
+            desc: doc.data().desc
+          };
+          this.phoneCases.push(data);
+        });
+      });
+  },
+  methods: {
+    ShowPhonecase: function(p) {
+      this.selectedItem = p;
+      this.isActive = !this.isActive;
+    }
+  }
+};
+</script>
+
+
+
+
+
+
 <style scoped>
 .wrapper {
   width: 40em;
@@ -272,47 +351,3 @@ body {
   background: white;
 }
 </style>
-<script>
-import Phonecase from "@/components/Phonecase.vue";
-export default {
-  name: "allcase",
-  components: {
-    ThePhonecase: Phonecase
-  },
-  data() {
-    return {
-      selectedItem: {},
-      isActive: false,
-      phonecases: [
-        {
-          title: "Upper Case",
-          price: "24.99",
-          tag: "bright",
-          desc: "This is a unique design made for users who favour simple, yet bold designs.",
-          date: "February 1, 2019"
-        },
-        {
-          title: "Lower Case",
-          price: "15.40",
-          tag: "dark",
-          desc: "This heavy design was inspired by the deep emotions felt by others.",
-          date: "February 2, 2019"
-        },
-        {
-          title: "The Shift",
-          price: "17",
-          tag: "duo",
-          desc: "This cool multi-coloured design represents the two side of a person.",
-          date: "February 3, 2019"
-        },
-      ]
-    };
-  },
-  methods: {
-    ShowPhonecase: function(p) {
-      this.selectedItem = p
-      this.isActive = !this.isActive;
-    }
-  }
-};
-</script>
