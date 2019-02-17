@@ -122,8 +122,9 @@ export default {
 
 <style scoped>
 .wrapper {
-  width: 40em;
-  margin: 4em auto;
+  /* width: 40em; */
+  /* margin: 4em auto; */
+  margin: 1em 4em;
   background: #fff;
   padding: 4em;
   border-radius: 8px;
@@ -210,10 +211,6 @@ code {
   text-align: center;
 }
 
-.wrapper {
-  width: 68em;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -224,13 +221,13 @@ body {
 }
 
 .product-grid {
-  width: 60em;
+  /* width: 60em; */
   margin: 2rem auto;
 }
-.product-grid.product-grid--flexbox .product-grid__wrapper {
+/* .product-grid.product-grid--flexbox .product-grid__wrapper {
   display: flex;
   flex-wrap: wrap;
-}
+} */
 .product-grid.product-grid--flexbox .product-grid__title {
   height: auto;
 }
@@ -243,11 +240,13 @@ body {
 }
 .product-grid__product-wrapper {
   padding: 1rem;
-  float: left;
+  /* float: left; */
+  display: inline-block;
   width: 33.33333%;
 }
 .product-grid__product {
-  padding: 1rem;
+  /* padding: 1rem; */
+  padding: 1rem 0; 
   position: relative;
   cursor: pointer;
   background: #fff;
@@ -301,9 +300,11 @@ body {
 }
 .product-grid__extend {
   display: none;
+  width: 100%;
   position: absolute;
   padding: 0 1rem 1rem 1rem;
-  margin: 0.4375rem -1rem 0;
+  /* margin: 0.4375rem -1rem 0; */
+  margin: 0.4375rem 0 0 0;
   box-shadow: 0px 0px 0px 1px #eee;
   background: #fff;
   border-radius: 0 0 4px 4px;
@@ -312,7 +313,7 @@ body {
   content: "";
   height: 0.875rem;
   width: 100%;
-  position: absolute;
+  position: relative;
   top: -0.4375rem;
   left: 0;
   background: #fff;
@@ -349,5 +350,16 @@ body {
 }
 .product-grid__view:hover {
   background: white;
+}
+
+@media screen and (max-width: 768px) {
+  .product-grid__product-wrapper {
+    width: 100%;
+    margin: 3em 0;
+  }
+  .wrapper {
+    margin:0;
+    padding-top: 0;
+  }
 }
 </style>
