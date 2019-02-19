@@ -59,6 +59,26 @@
 					<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
 					  <i class="fas fa-star"></i>
 					</button>
+					<hr>
+					<h4>Tap the stars</h4>
+						<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+					<i class="fas fa-star"></i>
+					</button>
+						<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+					<i class="fas fa-star"></i>
+					</button>
+						<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+					<i class="fas fa-star"></i>
+					</button>
+						<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+					<i class="fas fa-star"></i>
+					</button>
+						<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+					<i class="fas fa-star"></i>
+					</button>
+					<p></p>
+					 <textarea rows="4" cols="50">Write your reviews...</textarea>
+					 <b-button class="submitbtn">Submit</b-button>
 				</div>
 			</div>
 			<div class="col-sm-7">
@@ -313,6 +333,10 @@ h4 {
   text-align: left;
 }
 
+.submitbtn {
+	background-color:#E91E63;
+	border-color: #E91E63;
+}
 
 
 </style>
