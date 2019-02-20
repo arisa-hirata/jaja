@@ -16,7 +16,8 @@
             >
               <div class="product-grid__product">
                 <div class="product-grid__img-wrapper">
-                  <img src="../assets/1.png" alt="Img" class="product-grid__img">
+                  <!-- <img src="../assets/1.png" alt="Img" class="product-grid__img"> -->
+                  <img v-bind:src="p.image" alt="image">
                 </div>
                 <span class="product-grid__title">{{p.title}}</span>
                 <span class="product-grid__price">${{p.price}}</span>
@@ -97,6 +98,7 @@ export default {
         querySnapshot.forEach(doc => {
           let data = {
             id: doc.id,
+            image: doc.data().image,
             title: doc.data().title,
             tag: doc.data().tag,
             price: doc.data().price,
@@ -246,7 +248,7 @@ body {
 }
 .product-grid__product {
   /* padding: 1rem; */
-  padding: 1rem 0; 
+  padding: 1rem 0;
   position: relative;
   cursor: pointer;
   background: #fff;
@@ -358,7 +360,7 @@ body {
     margin: 3em 0;
   }
   .wrapper {
-    margin:0;
+    margin: 0;
     padding-top: 0;
   }
 }

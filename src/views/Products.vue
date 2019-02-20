@@ -154,9 +154,9 @@ export default {
 
     onFilePicked(event) {
       const files = event.target.files;
-      let filename = files[0].name;
-      console.log(filename);
-      if (filename.lastIndexOf(".") <= 0) {
+      this.filename = files[0].name;
+      console.log(this.filename);
+      if (this.filename.lastIndexOf(".") <= 0) {
         return alert("Please add va valid file!");
       }
       const fileReader = new FileReader();
@@ -170,40 +170,35 @@ export default {
     },
 
     CreateItem() {
-      // var storageRef = firebase.storage().ref();
+      var storageRef = firebase.storage().ref();
 
-      // var mountainsRef = storageRef.child(`images/${this.filename}`);
+      var mountainsRef = storageRef.child(`images/${this.filename}`);
 
-      // mountainsRef.put(this.imageFile).then(snapshot => {
-      //   snapshot.ref.getDownloadURL().then(downloadURL => {
-      //     this.imageUrl = downloadURL;
-      //     firebase
-      //       .firestore()
-      //       .collection("Product")
-      //       .add({ downloadURL });
-      //   });
-      // });
+      mountainsRef.put(this.image).then(snapshot => {
+        snapshot.ref.getDownloadURL().then(downloadURL => {
+          const colref = firebase.firestore().collection("Product");
 
-      const colref = firebase.firestore().collection("Product");
+          const saveData = {
+            title: this.title,
+            image: downloadURL,
+            tag: this.tag,
+            price: this.price,
+            desc: this.desc,
+            date: this.date
+          };
 
-      const saveData = {
-        title: this.title,
-        // image: this.image,
-        tag: this.tag,
-        price: this.price,
-        desc: this.desc,
-        date: this.date
-      };
-
-      colref
-        .add(saveData)
-        .then(function(docRef) {
-          console.log(docRef.id);
-        })
-        .catch(function(error) {
-          console.error(error);
+          colref
+            .add(saveData)
+            .then(function(docRef) {
+              console.log(docRef.id);
+            })
+            .catch(function(error) {
+              console.error(error);
+            });
         });
-      // this.$router.push("/allcase");
+      });
+
+      this.$router.push("/allcase");
     }
   }
 };
