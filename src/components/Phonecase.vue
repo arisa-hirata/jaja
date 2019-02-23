@@ -44,171 +44,63 @@
           <div class="col-sm-5">
             <div class="rating-block">
               <h4>Average user rating</h4>
-              <h2 class="bold padding-bottom-7">
-                4.3
+              <h2 class="bold padding-bottom-7">4.3
                 <small>/ 5</small>
               </h2>
-              <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                <i class="fas fa-star"></i>
-              </button>
-              <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                <i class="fas fa-star"></i>
-              </button>
-              <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                <i class="fas fa-star"></i>
-              </button>
-              <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                <i class="fas fa-star"></i>
-              </button>
-              <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                <i class="fas fa-star"></i>
-              </button>
+              <star-rating @rating-selected ="setRating"></star-rating>
               <hr>
+							<div id="rating">
               <h4>Tap the stars</h4>
-              <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                <i class="fas fa-star"></i>
-              </button>
-              <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                <i class="fas fa-star"></i>
-              </button>
-              <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                <i class="fas fa-star"></i>
-              </button>
-              <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                <i class="fas fa-star"></i>
-              </button>
-              <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                <i class="fas fa-star"></i>
-              </button>
+              <star-rating 
+							v-model="rating" 
+							v-bind:increment="0.5"
+             v-bind:max-rating="5"
+             inactive-color="#d8d8d8"
+             active-color="#ffd055"
+             v-bind:star-size="30"></star-rating>
+            
+							</div>
               <p></p>
-              <textarea rows="4" cols="50">Write your reviews...</textarea>
-              <b-button class="submitbtn">Submit</b-button>
+
+              <textarea
+                rows="4"
+                cols="50"
+                type="text"
+                v-model.trim="reply"
+                class="reply--text"
+                placeholder="Leave a comment..."
+                maxlength="250"
+                required
+                @keyup.enter="submitComment"
+              ></textarea>
+              <button b-button class="submitbtn" @click.prevent="submitComment">
+                <i class="fa fa-paper-plane"></i> Send
+              </button>
             </div>
           </div>
           <div class="col-sm-7">
             <div class="review-block">
               <div class="row">
                 <div class="col-sm-3">
-                  <img
-                    src="http://dummyimage.com/60x60/666/ffffff&text=No+Image"
-                    class="img-rounded"
-                  >
                   <div class="review-block-name">
                     <a href="#">Tim</a>
                   </div>
                 </div>
                 <div class="col-sm-9">
-                  <div class="review-block-rate">
-                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                      <i class="fas fa-star"></i>
-                    </button>
-                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                      <i class="fas fa-star"></i>
-                    </button>
-                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                      <i class="fas fa-star"></i>
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-default btn-grey btn-xs"
-                      aria-label="Left Align"
-                    >
-                      <i class="fas fa-star"></i>
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-default btn-grey btn-xs"
-                      aria-label="Left Align"
-                    >
-                      <i class="fas fa-star"></i>
-                    </button>
-                  </div>
-                  <div class="review-block-title">The best!</div>
-                  <div class="review-block-description">Beautiful!</div>
+                  <div class="review-block-description">{{reply}}</div>
                 </div>
               </div>
               <hr>
+
               <div class="row">
                 <div class="col-sm-3">
-                  <img
-                    src="http://dummyimage.com/60x60/666/ffffff&text=No+Image"
-                    class="img-rounded"
-                  >
                   <div class="review-block-name">
                     <a href="#">Jay</a>
                   </div>
-                </div>
-                <div class="col-sm-9">
-                  <div class="review-block-rate">
-                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                      <i class="fas fa-star"></i>
-                    </button>
-                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                      <i class="fas fa-star"></i>
-                    </button>
-                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                      <i class="fas fa-star"></i>
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-default btn-grey btn-xs"
-                      aria-label="Left Align"
-                    >
-                      <i class="fas fa-star"></i>
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-default btn-grey btn-xs"
-                      aria-label="Left Align"
-                    >
-                      <i class="fas fa-star"></i>
-                    </button>
-                  </div>
-                  <div class="review-block-title">this was nice</div>
-                  <div class="review-block-description">this was nice</div>
+
                 </div>
               </div>
               <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <img
-                    src="http://dummyimage.com/60x60/666/ffffff&text=No+Image"
-                    class="img-rounded"
-                  >
-                  <div class="review-block-name">
-                    <a href="#">Lee</a>
-                  </div>
-                </div>
-                <div class="col-sm-9">
-                  <div class="review-block-rate">
-                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                      <i class="fas fa-star"></i>
-                    </button>
-                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                      <i class="fas fa-star"></i>
-                    </button>
-                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                      <i class="fas fa-star"></i>
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-default btn-grey btn-xs"
-                      aria-label="Left Align"
-                    >
-                      <i class="fas fa-star"></i>
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-default btn-grey btn-xs"
-                      aria-label="Left Align"
-                    >
-                      <i class="fas fa-star"></i>
-                    </button>
-                  </div>
-                  <div class="review-block-title">Excellent!</div>
-                  <div class="review-block-description">I liked it!</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -378,7 +270,12 @@ h4 {
 }
 </style>
 <script>
+import StarRating from "vue-star-rating";
 export default {
+components: {
+    StarRating
+  },
+
   name: "phonecase",
   data() {
     return {
@@ -401,6 +298,17 @@ export default {
     CloseModal: function() {
       this.$emit("hide");
     }
-  }
+	},
+	submitComment: function() {
+      if (this.reply != "") {
+        this.$emit("submit-comment", this.reply);
+        this.reply = "";
+      }
+    },
+    submitComment: function(reply) {
+      this.comments.push({
+        text: reply
+      });
+		},
 };
 </script>
