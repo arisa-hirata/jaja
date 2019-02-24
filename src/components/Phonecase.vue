@@ -53,13 +53,13 @@
               <div id="rating">
                 <h4>Tap the stars</h4>
                 <star-rating
-                  v-model="rating"
+                  v-model="rate"
                   v-bind:increment="0.5"
                   v-bind:max-rating="5"
                   inactive-color="#d8d8d8"
                   active-color="#ffd055"
                   v-bind:star-size="30"
-                ></star-rating>
+                />
               </div>
               <p></p>
 
@@ -86,6 +86,7 @@
                     <a href="#">Tim</a>
                   </div>
                 </div>
+                <star-rating v-bind:star-size="30" :rating="r.rate" read-only="true"/>
                 <div class="col-sm-9">
                   <div class="review-block-description">{{r.desc}}</div>
                   <hr>
