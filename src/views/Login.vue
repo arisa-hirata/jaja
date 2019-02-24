@@ -35,6 +35,36 @@
     <div class="img-sec"></div>
   </main>
 </template>
+
+<script>
+import firebase from 'firebase'
+export default {
+  name: 'SignIn',
+  data: function () {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    SignIn: function () {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(
+          user => {
+
+            this.$router.push('/')
+          },
+          err => {
+            alert(err.message)
+          }
+        )
+    }
+  }
+}
+</script>
+
 <style scoped>
 main {
   background-color: #FFF;
@@ -289,31 +319,3 @@ h6 {
   transition: all 0.3s ease;
 }
 </style>
-<script>
-import firebase from 'firebase'
-export default {
-  name: 'SignIn',
-  data: function () {
-    return {
-      email: '',
-      password: ''
-    }
-  },
-  methods: {
-    SignIn: function () {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(
-          user => {
-            alert('Login Success')
-            this.$router.push('/')
-          },
-          err => {
-            alert(err.message)
-          }
-        )
-    }
-  }
-}
-</script>
