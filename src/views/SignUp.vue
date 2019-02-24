@@ -2,39 +2,81 @@
   <main>
     <div class="img-sec"></div>
 
-      <form @submit.prevent="handleSubmit" class="signup" action="/action_page.php" style="max-width:500px;margin:auto">
+    <form
+      @submit.prevent="handleSubmit"
+      class="signup"
+      action="/action_page.php"
+      style="max-width:500px;margin:auto"
+    >
+      <h6>
+        Have an account?
+        <a href>Login</a> here
+      </h6>
+      <div class="input-container">
+        <i class="fa fa-user icon"></i>
+        <input
+          class="input-field"
+          type="text"
+          placeholder="Username"
+          name="usrnm"
+          v-model="username"
+        >
+      </div>
 
-        <h6>Have an account?
-          <a href>Login</a> here
-        </h6>
-        <div class="input-container">
-          <i class="fa fa-user icon">
+      <div class="input-container">
+        <i class="fa fa-envelope icon"></i>
+        <input class="input-field" type="text" placeholder="Email" name="email" v-model="email">
+      </div>
 
-          </i>
-          <input class="input-field" type="text" placeholder="Username" name="usrnm">
-        </div>
-
-        <div class="input-container">
-          <i class="fa fa-envelope icon">
-
-          </i>
-          <input class="input-field" type="text" placeholder="Email" name="email" v-model="email">
-        </div>
-
-        <div class="input-container">
-          <i class="fa fa-key icon">
-
-          </i>
-          <input class="input-field" type="password" placeholder="Password" name="psw" v-model="password">
-        </div>
-        <div class="terms">
-          <input type="checkbox">I agree to the Terms and Conditions.
-        </div>
-        <button @click="SignUp" type="submit" class="btn">Signup</button>
-      </form>
-
+      <div class="input-container">
+        <i class="fa fa-key icon"></i>
+        <input
+          class="input-field"
+          type="password"
+          placeholder="Password"
+          name="psw"
+          v-model="password"
+        >
+      </div>
+      <div class="terms">
+        <input type="checkbox">I agree to the Terms and Conditions.
+      </div>
+      <button @click="SignUp" type="submit" class="btn">Signup</button>
+    </form>
   </main>
 </template>
+
+<script>
+import firebase from "firebase";
+
+export default {
+  name: "SignUp",
+  data() {
+    return {
+      email: "",
+      password: "",
+      username: ""
+    };
+  },
+  methods: {
+    SignUp: function() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(email => {
+          this.$router.push("/");
+        })
+        .catch(error => {
+          alert(error.message);
+        });
+    }
+  }
+};
+</script>
+
+
+
+
 <style scoped>
 main {
   width: auto;
@@ -133,33 +175,6 @@ h6 {
   padding: 15px;
 }
 fa-user {
-  color: #4A90E2;
+  color: #4a90e2;
 }
 </style>
-
-<script>
-import firebase from 'firebase'
-
-export default {
-  name: 'SignUp',
-  data () {
-    return {
-      email: '',
-      password: ''
-    }
-  },
-  methods: {
-    SignUp: function () {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.email, this.password)
-        .then(email => {
-          alert('Your account is created')
-        })
-        .catch(error => {
-          alert(error.message)
-        })
-    }
-  }
-}
-</script>

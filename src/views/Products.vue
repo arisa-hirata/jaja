@@ -12,24 +12,25 @@
           ref="fileInput"
           accept="image/*"
           @change="onFilePicked"
+          required
         >
       </div>
     </div>
     <div class="info-container">
       <div class="info">
         <h1>
-          <input type="text" placeholder="Enter title here..." v-model="title">
+          <input type="text" placeholder="Enter title here..." v-model="title" required>
         </h1>
 
         <h4>
           $
           <span>
-            <input type="number" placeholder="0.00" v-model="price">
+            <input type="number" placeholder="0.00" v-model="price" required>
           </span>
         </h4>
         <span>
           <i class="fas fa-tag"/>
-          <input type="text" placeholder="Enter tag.." v-model="tag">
+          <input type="text" placeholder="Enter tag.." v-model="tag" required>
         </span>
 
         <br>
@@ -43,6 +44,7 @@
             form="usrform"
             v-model="desc"
             placeholder="Enter description here..."
+            required
           ></textarea>
         </h6>
 
@@ -191,14 +193,14 @@ export default {
             .add(saveData)
             .then(function(docRef) {
               console.log(docRef.id);
+              //Jump to other page
             })
             .catch(function(error) {
-              console.error(error);
+              console.log("erooooorororor");
             });
         });
       });
-
-      this.$router.push("/allcase");
+      // this.$router.push("/allcase");
     }
   }
 };

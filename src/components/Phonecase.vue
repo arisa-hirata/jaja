@@ -135,6 +135,7 @@ export default {
     firebase
       .firestore()
       .collection("Review")
+      .orderBy("date")
       .get()
       .then(querySnapshot => {
         this.loading = false;

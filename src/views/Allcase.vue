@@ -92,6 +92,7 @@ export default {
     firebase
       .firestore()
       .collection("Product")
+      .orderBy("date")
       .get()
       .then(querySnapshot => {
         this.loading = false;

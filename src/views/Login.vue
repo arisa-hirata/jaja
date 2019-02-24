@@ -1,35 +1,51 @@
 <template>
   <main>
-      <form @submit.prevent="handleSubmit" class="login" action="/action_page.php" style="max-width:500px;margin:auto">
-      <h6>Don't have an account?
-          <a href>Signup</a> here
-        </h6>
-        <div class="input-container">
-          <i class="fa fa-envelope icon">
+    <form
+      @submit.prevent="handleSubmit"
+      class="login"
+      action="/action_page.php"
+      style="max-width:500px;margin:auto"
+    >
+      <h6>
+        Don't have an account?
+        <a href>Signup</a> here
+      </h6>
+      <div class="input-container">
+        <i class="fa fa-envelope icon"></i>
+        <input
+          class="input-field"
+          type="text"
+          placeholder="Email adress"
+          name="usrnm"
+          v-model="email"
+        >
+      </div>
 
-          </i>
-          <input class="input-field" type="text" placeholder="Email adress" name="usrnm" v-model="email">
-        </div>
-
-        <div class="input-container">
-          <i class="fa fa-key icon">
-
-          </i>
-          <input class="input-field" type="password" placeholder="Password" name="psw"  v-model="password">
-        </div>
-        <div class="rem"><input type="checkbox" /> Remember me</div>
-        <button @click="SignIn" type="submit" class="btn">Login</button>
-        <div class="login-box">
-          <a href="#" class="social-button" id="facebook-connect">
-            <span>Login with Facebook</span>
-          </a>
-          <a href="#" class="social-button" id="google-connect">
-            <span>Login with Google</span>
-          </a>
-          <a href="#" class="social-button" id="twitter-connect">
-            <span>Login with Twitter</span>
-          </a>
-        </div>
+      <div class="input-container">
+        <i class="fa fa-key icon"></i>
+        <input
+          class="input-field"
+          type="password"
+          placeholder="Password"
+          name="psw"
+          v-model="password"
+        >
+      </div>
+      <div class="rem">
+        <input type="checkbox"> Remember me
+      </div>
+      <button @click="SignIn" type="submit" class="btn">Login</button>
+      <div class="login-box">
+        <a href="#" class="social-button" id="facebook-connect">
+          <span>Login with Facebook</span>
+        </a>
+        <a href="#" class="social-button" id="google-connect">
+          <span>Login with Google</span>
+        </a>
+        <a href="#" class="social-button" id="twitter-connect">
+          <span>Login with Twitter</span>
+        </a>
+      </div>
     </form>
 
     <div class="img-sec"></div>
@@ -37,38 +53,37 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+import firebase from "firebase";
 export default {
-  name: 'SignIn',
-  data: function () {
+  name: "SignIn",
+  data: function() {
     return {
-      email: '',
-      password: ''
-    }
+      email: "",
+      password: ""
+    };
   },
   methods: {
-    SignIn: function () {
+    SignIn: function() {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(
           user => {
-
-            this.$router.push('/')
+            this.$router.push("/");
           },
           err => {
-            alert(err.message)
+            alert(err.message);
           }
-        )
+        );
     }
   }
-}
+};
 </script>
 
 <style scoped>
 main {
-  background-color: #FFF;
-  width:auto;
+  background-color: #fff;
+  width: auto;
   height: 80vh;
   margin: 5em;
   display: grid;
