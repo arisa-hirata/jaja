@@ -79,7 +79,9 @@
 }
 
 .jumbotron-banner {
-  background-image: url("../assets/bg1.png");
+  background-image: url("../assets/Background.png");
+  background-position: center center, center top;
+  background-repeat: repeat, no-repeat;
   background-size: cover;
   padding-top: 30%;
   padding-left: 5%;
