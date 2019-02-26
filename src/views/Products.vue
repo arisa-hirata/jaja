@@ -59,9 +59,10 @@
 </template>
 <style scoped>
 section {
-  width: 100%;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
   margin: 4em auto;
-  position: fixed;
   z-index: 1;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
 }

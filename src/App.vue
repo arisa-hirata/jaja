@@ -4,7 +4,7 @@
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
       <b-navbar-brand href="/">
-        <img class="logo" src="@/assets/logo.png" alt="logo">
+        <img class="logo" src="@/assets/Logoword.png" alt="logo">
       </b-navbar-brand>
 
       <b-collapse is-nav id="nav_collapse">
@@ -29,6 +29,7 @@
     </b-navbar>
 
     <router-view/>
+    <app-footer></app-footer>
   </div>
 </template>
 
@@ -60,7 +61,7 @@
 }
 
 .logo {
-  width: 100px;
+  width: 150px;
 }
 .login-btn {
   float: right;
@@ -98,7 +99,7 @@
 
 @media screen and (max-width: 768px) {
   .logo {
-    width: 50px;
+    width: 100px;
   }
   .navbar-nav {
     padding-top: 18px;
@@ -113,3 +114,15 @@
   }
 }
 </style>
+
+<script>
+
+import Footer from '@/components/Footer'
+export default {
+  name: 'App',
+  components: {
+    
+     'app-footer' : Footer
+  }
+}
+</script>
