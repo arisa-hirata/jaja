@@ -12,11 +12,9 @@
             <div
               class="product-grid__product-wrapper"
               v-for="p in phoneCases"
-              @click="ShowPhonecase(p)"
             >
               <div class="product-grid__product">
-                <div class="product-grid__img-wrapper">
-                  <!-- <img src="../assets/1.png" alt="Img" class="product-grid__img"> -->
+                <div class="product-grid__img-wrapper" @click="ShowPhonecase(p)">
                   <img v-bind:src="p.image" alt="image">
                 </div>
                 <span class="product-grid__title">{{p.title}}</span>
@@ -24,7 +22,7 @@
                 <div class="product-grid__extend-wrapper">
                   <div class="product-grid__extend">
                     <p class="product-grid__description">{{p.desc}}</p>
-                    <span class="product-grid__btn product-grid__add-to-cart">
+                    <span class="product-grid__btn product-grid__add-to-cart" to="/cart" @click="addToCart(p)">
                       <i class="fa fa-cart-arrow-down"></i> Add to cart
                     </span>
                     <span class="product-grid__btn product-grid__view">
@@ -85,7 +83,7 @@ export default {
         }
       ],
       phoneCases: [],
-      loading: true
+      loading: true,
     };
   },
   created() {
@@ -113,15 +111,13 @@ export default {
     ShowPhonecase: function(p) {
       this.selectedItem = p;
       this.isActive = !this.isActive;
+    },
+    addToCart(p) {
+      this.$store.commit('addToCart', p)
     }
-  }
+  },
 };
 </script>
-
-
-
-
-
 
 <style scoped>
 .wrapper {
@@ -269,10 +265,9 @@ body {
   padding-bottom: 1rem;
   height: 150px;
 }
-.product-grid__img {
-  max-width: 100%;
-  height: auto;
+.product-grid__img-wrapper img{
   max-height: 100%;
+  min-height: 100%;
 }
 .product-grid__title {
   margin-top: 0.875rem;
@@ -359,6 +354,9 @@ body {
   .product-grid__product-wrapper {
     width: 100%;
     margin: 3em 0;
+  }
+  .product-grid__img-wrapper {
+    height: 100%;
   }
   .wrapper {
     margin: 0;

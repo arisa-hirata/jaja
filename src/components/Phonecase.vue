@@ -246,6 +246,7 @@ h4 {
 }
 .photo_main img {
   max-height: 100%;
+  min-height: 90%;
   -webkit-filter: saturate(150%) contrast(120%) hue-rotate(10deg)
     drop-shadow(1px 20px 10px rgba(0, 0, 0, 0.3));
   filter: saturate(150%) contrast(120%) hue-rotate(10deg)

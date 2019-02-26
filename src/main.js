@@ -8,6 +8,7 @@ import firebase from 'firebase'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import { store } from './store'
 
 Vue.use(BootstrapVue)
 
@@ -28,6 +29,7 @@ const config = {
 firebase.initializeApp(config)
 
 new Vue({
+  store:store,
   router,
   render: h => h(App)
 }).$mount('#app')

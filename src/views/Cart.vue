@@ -9,17 +9,18 @@
           <div class="row">
             <div class="col-md-7 col-lg-7">
               <div class="items">
-                <div class="product">
+
+                <div class="product" v-for="c in cart">
                   <div class="row">
                     <div class="col-md-3">
-                      <img class="img-fluid mx-auto d-block image" src="../assets/thumb1.png">
+                      <img class="img-fluid mx-auto d-block image" v-bind:src="c.image">
                     </div>
                     <div class="col-md-8">
                       <div class="info">
                         <div class="row">
                           <div class="col-md-5 product-name">
                             <div class="product-name">
-                              <a href="#">Product 1</a>
+                              <a href="#">{{c.title}}</a>
                               <div class="product-info">
                                 <span class="value">iPhone 7</span>
                               </div>
@@ -35,79 +36,14 @@
                             >
                           </div>
                           <div class="col-md-3 price">
-                            <span>$24.99</span>
+                            <span>${{c.price}}</span>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="product">
-                  <div class="row">
-                    <div class="col-md-3">
-                      <img class="img-fluid mx-auto d-block image" src="../assets/thumb2.png">
-                    </div>
-                    <div class="col-md-8">
-                      <div class="info">
-                        <div class="row">
-                          <div class="col-md-5 product-name">
-                            <div class="product-name">
-                              <a href="#">Product 2</a>
-                              <div class="product-info">
-                                <span class="value">iPhone X</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-4 quantity">
-                            <label for="quantity">Quantity:</label>
-                            <input
-                              id="quantity"
-                              type="number"
-                              value="1"
-                              class="form-control quantity-input"
-                            >
-                          </div>
-                          <div class="col-md-3 price">
-                            <span>$24.99</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="product">
-                  <div class="row">
-                    <div class="col-md-3">
-                      <img class="img-fluid mx-auto d-block image" src="../assets/thumb3.png">
-                    </div>
-                    <div class="col-md-8">
-                      <div class="info">
-                        <div class="row">
-                          <div class="col-md-5 product-name">
-                            <div class="product-name">
-                              <a href="#">Product 3</a>
-                              <div class="product-info">
-                                <span class="value">iPhone 8</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-4 quantity">
-                            <label for="quantity">Quantity:</label>
-                            <input
-                              id="quantity"
-                              type="number"
-                              value="1"
-                              class="form-control quantity-input"
-                            >
-                          </div>
-                          <div class="col-md-3 price">
-                            <span>$24.99</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
             </div>
 
@@ -272,6 +208,16 @@
     </section>
   </main>
 </template>
+<script>
+  export default {
+    name: "allcase",
+    computed: {
+      cart(){
+        return this.$store.state.cart;
+      }
+    }
+  };
+</script>
 <style>
 .summary .btn {
   background-color: #ff6b6b;
@@ -335,6 +281,9 @@
   margin-bottom: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+.product img {
+  max-height: 95px;
 }
 
 .shopping-cart .items .product .info {
@@ -423,4 +372,3 @@
   }
 }
 </style>
-
