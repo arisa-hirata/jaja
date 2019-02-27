@@ -169,8 +169,9 @@ export default {
 
       colref
         .add(saveData)
-        .then(function(docRef) {
+        .then(docRef => {
           console.log(docRef.id);
+          this.AllReviews.push(saveData);
         })
         .catch(function(error) {
           alert(error);

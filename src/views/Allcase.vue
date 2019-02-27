@@ -9,10 +9,7 @@
           <div class="product-grid__wrapper">
             <!-- Product list start here -->
             <!-- Single product -->
-            <div
-              class="product-grid__product-wrapper"
-              v-for="p in phoneCases"
-            >
+            <div class="product-grid__product-wrapper" v-for="p in phoneCases">
               <div class="product-grid__product">
                 <div class="product-grid__img-wrapper" @click="ShowPhonecase(p)">
                   <img v-bind:src="p.image" alt="image">
@@ -22,7 +19,11 @@
                 <div class="product-grid__extend-wrapper">
                   <div class="product-grid__extend">
                     <p class="product-grid__description">{{p.desc}}</p>
-                    <span class="product-grid__btn product-grid__add-to-cart" to="/cart" @click="addToCart(p)">
+                    <span
+                      class="product-grid__btn product-grid__add-to-cart"
+                      to="/cart"
+                      @click="addToCart(p)"
+                    >
                       <i class="fa fa-cart-arrow-down"></i> Add to cart
                     </span>
                     <span class="product-grid__btn product-grid__view">
@@ -83,7 +84,7 @@ export default {
         }
       ],
       phoneCases: [],
-      loading: true,
+      loading: true
     };
   },
   created() {
@@ -113,9 +114,10 @@ export default {
       this.isActive = !this.isActive;
     },
     addToCart(p) {
-      this.$store.commit('addToCart', p)
+      this.$store.commit("addToCart", p);
+      this.$router.push("/cart");
     }
-  },
+  }
 };
 </script>
 
@@ -265,7 +267,7 @@ body {
   padding-bottom: 1rem;
   height: 150px;
 }
-.product-grid__img-wrapper img{
+.product-grid__img-wrapper img {
   max-height: 100%;
   min-height: 100%;
 }
