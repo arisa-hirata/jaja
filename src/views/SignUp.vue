@@ -25,23 +25,46 @@
 
       <div class="input-container">
         <i class="fa fa-envelope icon"></i>
-        <input class="input-field" type="text" placeholder="Email" name="email" v-model="email">
+        <input
+          name="email"
+          label="Email"
+          class="input-field"
+          v-model="email"
+          type="email"
+          placeholder="Email"
+          required
+        >
       </div>
 
       <div class="input-container">
         <i class="fa fa-key icon"></i>
         <input
+          name="password"
+          label="Password"
           class="input-field"
+          v-model="password"
           type="password"
           placeholder="Password"
-          name="psw"
-          v-model="password"
+          required
+        >
+      </div>
+      <div class="input-container">
+        <i class="fa fa-key icon"></i>
+        <input
+          name="confirmPassword"
+          label="Confirm Password"
+          id="confirmPassword"
+          class="input-field"
+          v-model="confirmPassword"
+          type="password"
+          placeholder="Confirm Password"
+          :rules="[comparePasswords ]"
         >
       </div>
       <div class="terms">
         <input type="checkbox">I agree to the Terms and Conditions.
       </div>
-      <button @click="SignUp" type="submit" class="btn">Signup</button>
+      <button type="submit" class="btn">Signup</button>
     </form>
   </main>
 </template>
@@ -53,22 +76,44 @@ export default {
   name: "SignUp",
   data() {
     return {
+      username: "",
       email: "",
       password: "",
-      username: ""
+      confirmPassword: ""
     };
   },
+  computed: {
+    comparePasswords() {
+      return this.password !== this.confirmPassword
+        ? "Passwords do not match"
+        : "";
+    },
+    user() {
+      return this.$store.getters.user;
+    }
+  },
+  watch: {
+    user(value) {
+      if (value !== null && value !== undefined) {
+        this.$router.push("/");
+      }
+    }
+  },
   methods: {
-    SignUp: function() {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.email, this.password)
-        .then(email => {
-          this.$router.push("/");
-        })
-        .catch(error => {
-          alert(error.message);
-        });
+    handleSubmit: function() {
+      this.$store.dispatch("signUserUp", {
+        email: this.email,
+        password: this.password
+      });
+      // firebase
+      //   .auth()
+      //   .createUserWithEmailAndPassword(this.email, this.password)
+      //   .then(email => {
+      //     this.$router.push("/");
+      //   })
+      //   .catch(error => {
+      //     alert(error.message);
+      //   });
     }
   }
 };

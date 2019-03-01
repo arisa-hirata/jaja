@@ -1,7 +1,7 @@
 <template>
   <main>
     <form
-      @submit.prevent="handleSubmit"
+      @submit.prevent="onSignin"
       class="login"
       action="/action_page.php"
       style="max-width:500px;margin:auto"
@@ -13,28 +13,32 @@
       <div class="input-container">
         <i class="fa fa-envelope icon"></i>
         <input
+          name="email"
+          labe="Email"
           class="input-field"
-          type="text"
-          placeholder="Email adress"
-          name="usrnm"
           v-model="email"
+          type="email"
+          placeholder="Email adress"
+          required
         >
       </div>
 
       <div class="input-container">
         <i class="fa fa-key icon"></i>
         <input
+          name="password"
+          label="Password"
           class="input-field"
+          v-model="password"
           type="password"
           placeholder="Password"
-          name="psw"
-          v-model="password"
+          required
         >
       </div>
       <div class="rem">
         <input type="checkbox"> Remember me
       </div>
-      <button @click="SignIn" type="submit" class="btn">Login</button>
+      <button type="submit" class="btn">Login</button>
       <div class="login-box">
         <a href="#" class="social-button" id="facebook-connect">
           <span>Login with Facebook</span>
@@ -62,20 +66,38 @@ export default {
       password: ""
     };
   },
-  methods: {
-    SignIn: function() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(
-          user => {
-            this.$router.push("/");
-          },
-          err => {
-            alert(err.message);
-          }
-        );
+  computed: {
+    user() {
+      return this.$store.getters.user;
     }
+  },
+  watch: {
+    user(value) {
+      if (value !== null && value !== undefined) {
+        this.$router.push("/");
+      }
+    }
+  },
+  methods: {
+    onSignin() {
+      this.$store.dispatch("signUserIn", {
+        email: this.email,
+        password: this.password
+      });
+    }
+    // SignIn: function() {
+    //   firebase
+    //     .auth()
+    //     .signInWithEmailAndPassword(this.email, this.password)
+    //     .then(
+    //       user => {
+    //         this.$router.push("/");
+    //       },
+    //       err => {
+    //         alert(err.message);
+    //       }
+    //     );
+    // }
   }
 };
 </script>

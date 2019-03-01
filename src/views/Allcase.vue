@@ -57,32 +57,6 @@ export default {
     return {
       selectedItem: {},
       isActive: false,
-      phonecases: [
-        {
-          title: "Upper Case",
-          price: "24.99",
-          tag: "bright",
-          desc:
-            "This is a unique design made for users who favour simple, yet bold designs.",
-          date: "February 1, 2019"
-        },
-        {
-          title: "Lower Case",
-          price: "15.40",
-          tag: "dark",
-          desc:
-            "This heavy design was inspired by the deep emotions felt by others.",
-          date: "February 2, 2019"
-        },
-        {
-          title: "The Shift",
-          price: "17",
-          tag: "duo",
-          desc:
-            "This cool multi-coloured design represents the two side of a person.",
-          date: "February 3, 2019"
-        }
-      ],
       phoneCases: [],
       loading: true
     };
