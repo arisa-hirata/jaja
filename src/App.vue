@@ -21,9 +21,12 @@
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
-          <router-link class="login-btn" to="/cart"><i class="fas fa-shopping-cart"></i></router-link>
+          <router-link class="login-btn" to="/cart">
+            <i class="fas fa-shopping-cart"></i>
+          </router-link>
           <router-link class="login-btn" to="/login">Login</router-link>
           <router-link class="signup-btn" to="/signup">Signup</router-link>
+          <button type="button" @click="onSignOut">Sign Out</button>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -32,6 +35,25 @@
     <app-footer></app-footer>
   </div>
 </template>
+
+<script>
+import Footer from "@/components/Footer";
+import firebase from "firebase";
+
+export default {
+  name: "App",
+  components: {
+    "app-footer": Footer
+  },
+  methods: {
+    onSignOut() {
+      firebase.auth().signOut();
+      this.$router.push("/");
+    }
+  }
+};
+</script>
+
 
 <style scoped>
 #app {
@@ -114,15 +136,3 @@
   }
 }
 </style>
-
-<script>
-
-import Footer from '@/components/Footer'
-export default {
-  name: 'App',
-  components: {
-    
-     'app-footer' : Footer
-  }
-}
-</script>
