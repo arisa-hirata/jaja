@@ -86,7 +86,12 @@
                     <a href="#">Tim</a>
                   </div>
                 </div>
-                <star-rating v-bind:star-size="30" :rating="r.rate" read-only="true"/>
+                <star-rating
+                  v-bind:star-size="30"
+                  v-bind:increment="0.5"
+                  :rating="r.rate"
+                  read-only="true"
+                />
                 <div class="col-sm-9">
                   <div class="review-block-description">{{r.desc}}</div>
                   <hr>
@@ -135,7 +140,7 @@ export default {
     firebase
       .firestore()
       .collection("Review")
-      .orderBy("date")
+      .where("productid", "==", this.phonecase.id)
       .get()
       .then(querySnapshot => {
         this.loading = false;
@@ -161,6 +166,7 @@ export default {
       const colref = firebase.firestore().collection("Review");
 
       const saveData = {
+        productid: this.phonecase.id,
         username: this.username,
         rate: this.rate,
         desc: this.desc,

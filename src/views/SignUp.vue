@@ -58,7 +58,7 @@
           v-model="confirmPassword"
           type="password"
           placeholder="Confirm Password"
-          :rules="[comparePasswords ]"
+          :rules="[comparePasswords]"
         >
       </div>
       <div class="terms">
