@@ -9,7 +9,6 @@
           <div class="row">
             <div class="col-md-7 col-lg-7">
               <div class="items">
-
                 <div class="product" v-for="c in cart">
                   <div class="row">
                     <div class="col-md-3">
@@ -43,163 +42,142 @@
                     </div>
                   </div>
                 </div>
-                
               </div>
             </div>
 
             <div class="col-md-5 col-lg-5">
-              <div class="summary">
-                <h3>Summary</h3>
-                <div class="row">
-                  <div class="form-group col-sm-7">
-                    <label for="card-holder">Cardholder Name</label>
-                    <input
-                      id="card-holder"
-                      type="text"
-                      class="form-control"
-                      placeholder="Cardholder Name"
-                      aria-label="Card Holder"
-                      aria-describedby="basic-addon1"
-                    >
+              <div class="cell example example5" id="example-5">
+                <form>
+                  <div id="example5-paymentRequest">
+                    <!--Stripe paymentRequestButton Element inserted here-->
                   </div>
-                  <div class="form-group col-sm-5">
-                    <label for>Expiration Date</label>
-                    <div class="input-group expiration-date">
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="MM"
-                        aria-label="MM"
-                        aria-describedby="basic-addon1"
-                      >
-                      <span class="date-separator">/</span>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="YY"
-                        aria-label="YY"
-                        aria-describedby="basic-addon1"
-                      >
-                    </div>
-                  </div>
-                  <div class="form-group col-sm-8">
-                    <label for="card-number">Card Number</label>
-                    <input
-                      id="card-number"
-                      type="text"
-                      class="form-control"
-                      placeholder="Card Number"
-                      aria-label="Card Holder"
-                      aria-describedby="basic-addon1"
-                    >
-                  </div>
-                  <div class="form-group col-sm-4">
-                    <label for="cvc">CVC</label>
-                    <input
-                      id="cvc"
-                      type="text"
-                      class="form-control"
-                      placeholder="CVC"
-                      aria-label="Card Holder"
-                      aria-describedby="basic-addon1"
-                    >
-                  </div>
-                  <div class="form-group col-sm-6">
-                    <label for="first-name">First Name</label>
-                    <input
-                      id="firstname"
-                      type="text"
-                      class="form-control"
-                      placeholder="First Name"
-                      aria-label="First name"
-                      aria-describedby="basic-addon1"
-                    >
-                  </div>
-                  <div class="form-group col-sm-6">
-                    <label for="last-name">Last Name</label>
-                    <input
-                      id="lastname"
-                      type="text"
-                      class="form-control"
-                      placeholder="Last Name"
-                      aria-label="Last name"
-                      aria-describedby="basic-addon1"
-                    >
-                  </div>
-                  <div class="form-group col-sm-12">
-                    <label for="address">Shipping Address</label>
-                    <input
-                      id="address"
-                      type="text"
-                      class="form-control"
-                      placeholder="Shipping Address"
-                      aria-label="shipping address"
-                      aria-describedby="basic-addon1"
-                    >
-                  </div>
-                  <div class="form-group col-sm-6">
-                    <label for="city">Country</label>
-                    <input
-                      id="country"
-                      type="text"
-                      class="form-control"
-                      placeholder="Country"
-                      aria-label="country"
-                      aria-describedby="basic-addon1"
-                    >
-                  </div>
-                  <div class="form-group col-sm-6">
-                    <label for="province">Province</label>
-                    <input
-                      id="province"
-                      type="text"
-                      class="form-control"
-                      placeholder="Province"
-                      aria-label="province"
-                      aria-describedby="basic-addon1"
-                    >
-                  </div>
-                  <div class="form-group col-sm-6">
-                    <label for="city">City</label>
-                    <input
-                      id="city"
-                      type="text"
-                      class="form-control"
-                      placeholder="City"
-                      aria-label="city"
-                      aria-describedby="basic-addon1"
-                    >
-                  </div>
-                  <div class="form-group col-sm-6">
-                    <label for="city">Zip/Postal Code</label>
-                    <input
-                      id="Zip"
-                      type="text"
-                      class="form-control"
-                      placeholder="Zip/Postal Code"
-                      aria-label="Zip/Postal Code"
-                      aria-describedby="basic-addon1"
-                    >
-                  </div>
+                  <fieldset>
                   
-                </div>
-                <div class="summary-item">
-                  <span class="text">Subtotal</span>
-                  <span class="price">$74.97</span>
-                </div>
-                <div class="summary-item">
-                  <span class="text">Discount</span>
-                  <span class="price">$0</span>
-                </div>
-                <div class="summary-item">
-                  <span class="text">Shipping</span>
-                  <span class="price">$0</span>
-                </div>
-                <div class="summary-item">
-                  <span class="text">Total</span>
-                  <span class="price">$74.97</span>
-                </div>
-                <button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
+                    <legend
+                      class="payment-request-available"
+                      data-tid="elements_examples.form.enter_card_manually"
+                    >Or enter card details</legend>
+                    <div class="row">
+                      <div class="field">
+                        <label for="example5-name" data-tid="elements_examples.form.name_label">Name</label>
+                        <input
+                          id="example5-name"
+                          data-tid="elements_examples.form.name_placeholder"
+                          class="input"
+                          type="text"
+                          placeholder="Joe Smith"
+                          required
+                          autocomplete="name"
+                        >
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="field">
+                        <label
+                          for="example5-email"
+                          data-tid="elements_examples.form.email_label"
+                        >Email</label>
+                        <input
+                          id="example5-email"
+                          data-tid="elements_examples.form.email_placeholder"
+                          class="input"
+                          type="text"
+                          placeholder="info@jaja.com"
+                          required
+                          autocomplete="email"
+                        >
+                      </div>
+                      <div class="field">
+                        <label
+                          for="example5-phone"
+                          data-tid="elements_examples.form.phone_label"
+                        >Phone</label>
+                        <input
+                          id="example5-phone"
+                          data-tid="elements_examples.form.phone_placeholder"
+                          class="input"
+                          type="text"
+                          placeholder="(604) 434-5734"
+                          required
+                          autocomplete="tel"
+                        >
+                      </div>
+                    </div>
+                    <div data-locale-reversible>
+                      <div class="row">
+                        <div class="field">
+                          <label
+                            for="example5-address"
+                            data-tid="elements_examples.form.address_label"
+                          >Address</label>
+                          <input
+                            id="example5-address"
+                            data-tid="elements_examples.form.address_placeholder"
+                            class="input"
+                            type="text"
+                            placeholder="555 Seymour St"
+                            required
+                            autocomplete="address-line1"
+                          >
+                        </div>
+                      </div>
+                      <div class="row" data-locale-reversible>
+                        <div class="field">
+                          <label
+                            for="example5-city"
+                            data-tid="elements_examples.form.city_label"
+                          >City</label>
+                          <input
+                            id="example5-city"
+                            data-tid="elements_examples.form.city_placeholder"
+                            class="input"
+                            type="text"
+                            placeholder="Vancouver"
+                            required
+                            autocomplete="address-level2"
+                          >
+                        </div>
+                        <div class="field">
+                          <label
+                            for="example5-state"
+                            data-tid="elements_examples.form.state_label"
+                          >Province</label>
+                          <input
+                            id="example5-state"
+                            data-tid="elements_examples.form.state_placeholder"
+                            class="input empty"
+                            type="text"
+                            placeholder="BC"
+                            required
+                            autocomplete="address-level1"
+                          >
+                        </div>
+                        <div class="field">
+                          <label
+                            for="example5-zip"
+                            data-tid="elements_examples.form.postal_code_label"
+                          >ZIP</label>
+                          <input
+                            id="example5-zip"
+                            data-tid="elements_examples.form.postal_code_placeholder"
+                            class="input empty"
+                            type="text"
+                            placeholder="V6B 3H6"
+                            required
+                            autocomplete="postal-code"
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="field">
+                        <label for="example5-card" data-tid="elements_examples.form.card_label">Card</label>
+                        <div ref="card" id="paycard" class="input"></div>
+                        <button id="pbutton" v-on:click="purchase">Purchase</button>
+                      </div>
+                    </div>
+                  </fieldset>
+                </form>
               </div>
             </div>
           </div>
@@ -209,14 +187,39 @@
   </main>
 </template>
 <script>
-  export default {
-    name: "allcase",
-    computed: {
-      cart(){
-        return this.$store.state.cart;
+let stripe = Stripe(`pk_test_97SnjKYkFcZ8bahgsfgpHnu9`),
+  elements = stripe.elements(),
+  card = undefined;
+
+export default {
+  mounted: function() {
+    card = elements.create("card");
+    card.mount(this.$refs.card);
+  },
+
+  purchase: function() {
+    stripe.createToken(card).then(function(result) {
+      // Access the token with result.token
+    });
+  },
+  purchase: function() {
+    let self = this;
+
+    stripe.createToken(card).then(function(result) {
+      if (result.error) {
+        self.hasCardErrors = true;
+        self.$forceUpdate(); // Forcing the DOM to update so the Stripe Element can update.
+        return;
       }
+    });
+  },
+  name: "allcase",
+  computed: {
+    cart() {
+      return this.$store.state.cart;
     }
-  };
+  }
+};
 </script>
 <style>
 .summary .btn {
@@ -370,5 +373,153 @@
     padding: 4px 10px;
     text-align: center;
   }
+}
+
+.example.example5 {
+  background-color: #ffffff;
+}
+
+.example.example5 * {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+
+#example5-paymentRequest {
+  max-width: 500px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.example.example5 fieldset {
+  border: 1px solid #ff6b6b;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+.example.example5 fieldset legend {
+  margin: 0 auto;
+  padding: 0 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ff6b6b;
+  background-color: #ff6b6b;
+}
+
+.example.example5 fieldset legend + * {
+  clear: both;
+}
+
+.example.example5 .card-only {
+  display: block;
+}
+.example.example5 .payment-request-available {
+  display: none;
+}
+
+.example.example5 .row {
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 0 10px;
+}
+
+.example.example5 .field {
+  position: relative;
+  width: 100%;
+}
+
+.example.example5 .field + .field {
+  margin-left: 10px;
+}
+
+.example.example5 label {
+  width: 100%;
+  color: #ff6b6b;
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.example.example5 .input {
+  width: 100%;
+  color: rgb(34, 34, 34);
+  background: transparent;
+  padding: 5px 0 6px 0;
+  border-bottom: 1px solid #267cfd;
+  transition: border-color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.example.example5 .input::-webkit-input-placeholder {
+  color: #ff6b6b;
+}
+
+.example.example5 .input::-moz-placeholder {
+  color: #ff6b6b;
+}
+
+.example.example5 .input:-ms-input-placeholder {
+  color: #ff6b6b;
+}
+
+.example.example5 .input.StripeElement--focus,
+.example.example5 .input:focus {
+  border-color: #fff;
+}
+.example.example5 .input.StripeElement--invalid {
+  border-color: #ff6b6b;
+}
+
+.example.example5 input:-webkit-autofill,
+.example.example5 select:-webkit-autofill {
+  -webkit-text-fill-color: #313131;
+  transition: background-color 100000000s;
+  -webkit-animation: 1ms void-animation-out;
+}
+
+.example.example5 .StripeElement--webkit-autofill {
+  background: transparent !important;
+}
+
+.example.example5 input,
+.example.example5 button,
+.example.example5 select {
+  -webkit-animation: 1ms void-animation-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border-style: none;
+  border-radius: 0;
+}
+
+.example.example5 select.input,
+.example.example5 select:-webkit-autofill {
+  background-image: url('data:image/svg+xml;utf8,<svg width="10px" height="5px" viewBox="0 0 10 5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="#fff" d="M5.35355339,4.64644661 L9.14644661,0.853553391 L9.14644661,0.853553391 C9.34170876,0.658291245 9.34170876,0.341708755 9.14644661,0.146446609 C9.05267842,0.0526784202 8.92550146,-2.43597394e-17 8.79289322,0 L1.20710678,0 L1.20710678,0 C0.930964406,5.07265313e-17 0.707106781,0.223857625 0.707106781,0.5 C0.707106781,0.632608245 0.759785201,0.759785201 0.853553391,0.853553391 L4.64644661,4.64644661 L4.64644661,4.64644661 C4.84170876,4.84170876 5.15829124,4.84170876 5.35355339,4.64644661 Z" id="shape"></path></svg>');
+  background-position: 100%;
+  background-size: 10px 5px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 20px;
+}
+
+.example.example5 button {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin: 20px 0 0;
+  background-color: #fff;
+  border-radius: 6px;
+  color: #ff6b6b;
+  font-weight: 500;
+  cursor: pointer;
+}
+#pbutton{
+  background-color: #ff6b6b;
+  color: white;
 }
 </style>
