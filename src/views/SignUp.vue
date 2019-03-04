@@ -15,11 +15,13 @@
       <div class="input-container">
         <i class="fa fa-user icon"></i>
         <input
+          name="username"
+          label="User Name"
           class="input-field"
+          v-model="username"
           type="text"
           placeholder="Username"
-          name="usrnm"
-          v-model="username"
+          required
         >
       </div>
 
@@ -102,6 +104,7 @@ export default {
   methods: {
     handleSubmit: function() {
       this.$store.dispatch("signUserUp", {
+        username: this.username,
         email: this.email,
         password: this.password
       });

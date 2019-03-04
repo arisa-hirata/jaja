@@ -11,6 +11,7 @@
         </div>
         <div class="info-container">
           <div class="info">
+            <button @click="Delete">X</button>
             <div class="controls" @click="ChangeHeart">
               <i class="far fa-heart" aria-hidden="true" v-if="heart===true"></i>
               <i class="fa fa-heart" aria-hidden="true" v-if="heart===false"></i>
@@ -39,6 +40,7 @@
         </div>
       </div>
 
+      <!-- Review -->
       <div class="container">
         <div class="row">
           <div class="col-sm-5" ref="form">
@@ -182,6 +184,20 @@ export default {
         .catch(function(error) {
           alert(error);
         });
+    },
+    Delete() {
+      const laRef = firebase
+        .firestore()
+        .collection("Product")
+        .where("productid", "==", this.phonecase.id);
+      batch.delete(laRef);
+
+      // Commit the batch
+      batch.commit().then(function() {
+        // [START_EXCLUDE]
+        done();
+        // [END_EXCLUDE]
+      });
     },
     clear() {
       this.$refs.form.reset();

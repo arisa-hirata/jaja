@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="info-container">
-      <div class="info">
+      <form @submit.prevent="CreateItem" class="info">
         <h1>
           <input type="text" placeholder="Enter title here..." v-model="title" required>
         </h1>
@@ -50,13 +50,100 @@
 
         <br>
 
-        <b-button class="addproduct" @click="CreateItem">
+        <b-button class="addproduct" type="submit">
           <i class="fa fa-plus" aria-hidden="true"></i> Add Product
         </b-button>
-      </div>
+      </form>
     </div>
   </section>
 </template>
+
+
+<script>
+import Phonecase from "@/components/Phonecase.vue";
+import firebase from "firebase";
+export default {
+  name: "Product",
+  components: {
+    ThePhonecase: Phonecase
+  },
+  data() {
+    return {
+      title: "",
+      tag: "",
+      price: "",
+      desc: "",
+      imageUrl: "",
+      username: "",
+      date: new Date()
+    };
+  },
+  methods: {
+    onPickFile() {
+      this.$refs.fileInput.click();
+    },
+
+    onFilePicked(event) {
+      const files = event.target.files;
+      this.filename = files[0].name;
+      console.log(this.filename);
+      if (this.filename.lastIndexOf(".") <= 0) {
+        return alert("Please add a valid file!");
+      }
+      const fileReader = new FileReader();
+      fileReader.addEventListener("load", () => {
+        this.imageUrl = fileReader.result;
+        console.log(this.imageUrl);
+      });
+      fileReader.readAsDataURL(files[0]);
+      this.image = files[0];
+      console.log(this.image);
+    },
+
+    CreateItem() {
+      if (user !== null) {
+        var storageRef = firebase.storage().ref();
+
+        var mountainsRef = storageRef.child(`images/${this.filename}`);
+
+        mountainsRef.put(this.image).then(snapshot => {
+          snapshot.ref.getDownloadURL().then(downloadURL => {
+            const colref = firebase.firestore().collection("Product");
+
+            const saveData = {
+              title: this.title,
+              image: downloadURL,
+              tag: this.tag,
+              price: this.price,
+              desc: this.desc,
+              date: this.date,
+              username: this.$store.state.user
+            };
+
+            colref
+              .add(saveData)
+              .then(function(docRef) {
+                console.log(docRef.id);
+                // $router.push("/allcase"); <= ??
+                //Jump to other page
+              })
+              .catch(function(error) {
+                alert(error);
+              });
+          });
+        });
+        // this.$router.push("/allcase");
+      } else {
+        this.$router.push("/login");
+      }
+    }
+  }
+};
+</script>
+
+
+
+
 <style scoped>
 section {
   position: relative;
@@ -132,77 +219,3 @@ h4 {
   }
 }
 </style>
-<script>
-import Phonecase from "@/components/Phonecase.vue";
-import firebase from "firebase";
-export default {
-  name: "Product",
-  components: {
-    ThePhonecase: Phonecase
-  },
-  data() {
-    return {
-      title: "",
-      tag: "",
-      price: "",
-      desc: "",
-      imageUrl: "",
-      date: new Date()
-    };
-  },
-  methods: {
-    onPickFile() {
-      this.$refs.fileInput.click();
-    },
-
-    onFilePicked(event) {
-      const files = event.target.files;
-      this.filename = files[0].name;
-      console.log(this.filename);
-      if (this.filename.lastIndexOf(".") <= 0) {
-        return alert("Please add va valid file!");
-      }
-      const fileReader = new FileReader();
-      fileReader.addEventListener("load", () => {
-        this.imageUrl = fileReader.result;
-        console.log(this.imageUrl);
-      });
-      fileReader.readAsDataURL(files[0]);
-      this.image = files[0];
-      console.log(this.image);
-    },
-
-    CreateItem() {
-      var storageRef = firebase.storage().ref();
-
-      var mountainsRef = storageRef.child(`images/${this.filename}`);
-
-      mountainsRef.put(this.image).then(snapshot => {
-        snapshot.ref.getDownloadURL().then(downloadURL => {
-          const colref = firebase.firestore().collection("Product");
-
-          const saveData = {
-            title: this.title,
-            image: downloadURL,
-            tag: this.tag,
-            price: this.price,
-            desc: this.desc,
-            date: this.date
-          };
-
-          colref
-            .add(saveData)
-            .then(function(docRef) {
-              console.log(docRef.id);
-              //Jump to other page
-            })
-            .catch(function(error) {
-              console.log("erooooorororor");
-            });
-        });
-      });
-      // this.$router.push("/allcase");
-    }
-  }
-};
-</script>
