@@ -15,10 +15,10 @@
             <div class="controls" @click="ChangeHeart">
               <i class="far fa-heart" aria-hidden="true" v-if="heart===true"></i>
               <i class="fa fa-heart" aria-hidden="true" v-if="heart===false"></i>
+              
             </div>
-
-            <h1>{{phonecase.title}}</h1>
-
+              <button id="editbtn"><i class="far fa-edit"></i></button>
+            <h1>{{phonecase.title}} </h1> 
             <h4>
               $
               <span>{{phonecase.price}}</span>
@@ -383,5 +383,14 @@ h4 {
 .submitbtn {
   background-color: #e91e63;
   border-color: #e91e63;
+}
+#editbtn {
+  background-color: #ffffff;
+  color: #ff6b6b;
+  border: solid 1px #ff6b6b;
+  border-radius: 0.5em;
+  cursor: pointer;
+  width: 2em;
+  opacity: 0.9;
 }
 </style>

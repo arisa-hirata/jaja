@@ -8,7 +8,7 @@
     >
       <h6>
         Don't have an account?
-        <a href>Signup</a> here
+        <a href><router-link to="/signup">Signup</router-link></a> here
       </h6>
       <div class="input-container">
         <i class="fa fa-envelope icon"></i>
