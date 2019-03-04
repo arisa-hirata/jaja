@@ -10,7 +10,7 @@
     >
       <h6>
         Have an account?
-        <a href>Login</a> here
+        <a href><router-link to="/login">Login</router-link></a> here
       </h6>
       <div class="input-container">
         <i class="fa fa-user icon"></i>
