@@ -11,14 +11,17 @@
         </div>
         <div class="info-container">
           <div class="info">
-            <button @click="Delete">X</button>
             <div class="controls" @click="ChangeHeart">
               <i class="far fa-heart" aria-hidden="true" v-if="heart===true"></i>
               <i class="fa fa-heart" aria-hidden="true" v-if="heart===false"></i>
-              
             </div>
-              <button id="editbtn"><i class="far fa-edit"></i></button>
-            <h1>{{phonecase.title}} </h1> 
+            <button class="editbtn">
+              <i class="far fa-edit"></i>
+            </button>
+            <button class="editbtn" @click="Delete">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+            <h1>{{phonecase.title}}</h1>
             <h4>
               $
               <span>{{phonecase.price}}</span>
@@ -186,16 +189,15 @@ export default {
         });
     },
     Delete() {
-      const laRef = firebase
-        .firestore()
-        .collection("Product")
-        .where("productid", "==", this.phonecase.id);
+      alert("are you sure?");
+      const laRef = firebase.firestore().collection("Product");
       batch.delete(laRef);
 
       // Commit the batch
       batch.commit().then(function() {
         // [START_EXCLUDE]
         done();
+        this.$router.push("/allcase");
         // [END_EXCLUDE]
       });
     },
@@ -207,17 +209,6 @@ export default {
       this.isActive = !this.isActive;
     }
   }
-  // submitComment: function() {
-  //     if (this.reply != "") {
-  //       this.$emit("submit-comment", this.reply);
-  //       this.reply = "";
-  //     }
-  //   },
-  //   submitComment: function(reply) {
-  //     this.comments.push({
-  //       text: reply
-  //     });
-  //   },
 };
 </script>
 
@@ -384,7 +375,7 @@ h4 {
   background-color: #e91e63;
   border-color: #e91e63;
 }
-#editbtn {
+.editbtn {
   background-color: #ffffff;
   color: #ff6b6b;
   border: solid 1px #ff6b6b;
