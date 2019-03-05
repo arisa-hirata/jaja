@@ -6,6 +6,7 @@ import Login from './views/Login.vue'
 import SignUp from './views/SignUp.vue'
 import Products from './views/Products.vue'
 import Cart from './views/Cart.vue'
+import Edit from './views/Edit.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -41,6 +42,11 @@ export default new Router({
       path: '/cart',
       name: 'cart',
       component: Cart
+    },
+    {
+      path: '/edit',
+      name: 'edit',
+      component: Edit
     },
     {
       path: '/about',
