@@ -1,5 +1,6 @@
 <template>
   <section class="phonecase">
+    <Edit v-if="isActive===true" @hide="isActive=false"/>
     <div class="product-wrapper">
       <div class="close" @click="CloseModal">x</div>
 
@@ -15,7 +16,7 @@
               <i class="far fa-heart" aria-hidden="true" v-if="heart===true"></i>
               <i class="fa fa-heart" aria-hidden="true" v-if="heart===false"></i>
             </div>
-            <button class="editbtn">
+            <button class="editbtn" @click="openEdit">
               <i class="far fa-edit"></i>
             </button>
             <button class="editbtn" @click="Delete">
@@ -116,12 +117,14 @@
 
 
 <script>
+import Edit from "@/components/Edit.vue";
 import StarRating from "vue-star-rating";
 import firebase from "firebase";
 
 export default {
   components: {
-    StarRating
+    StarRating,
+    Edit
   },
   name: "phonecase",
   data() {
@@ -170,6 +173,9 @@ export default {
     CloseModal: function() {
       this.$emit("hide");
     },
+    openEdit: function() {
+      this.isActive = !this.isActive;
+    },
     CreateReview() {
       const colref = firebase.firestore().collection("Review");
 
@@ -196,7 +202,7 @@ export default {
         firebase
           .firestore()
           .collection("Product")
-          .doc(this.phonecase.id).id
+          .doc(this.phonecase.id)
       );
       firebase
         .firestore()
