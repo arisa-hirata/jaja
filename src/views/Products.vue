@@ -170,11 +170,16 @@ h4 {
   box-shadow: 4px 4px 22px -2px rgba(0, 0, 0, 0.3);
   border-radius: 6px 0px 0px 6px;
   background-color: #f8b8b9;
+  border-radius: 2em;
 }
 .addimage {
   width: 100%;
   background-color: #ffffff;
-  padding: 10% 10%;
+  color: #ff6b6b;
+  padding: 15px 20px;
+  border: solid 0.2em #ff6b6b;
+  border-radius: 2em;
+  cursor: pointer;
 }
 .imgpreview {
   width: 50%;
