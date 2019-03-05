@@ -1,7 +1,20 @@
 <template>
   <section class="phonecase">
+    <router-link to="/allcase"><div class="close">x</div></router-link>
     <div class="add-photo">
       <div class="photo_main">
+        <b-modal
+          v-model="showModal"
+          title="Confirmation"
+        >
+          <b-container>
+            <p>Are you sure you want to make these changes?</p>
+          </b-container>
+          <div slot="modal-footer" class="w-100">
+            <b-button size="sm" variant="primary" @click="showModal=false">Close</b-button>
+            <b-button size="sm" variant="primary" @click.prevent="ChangeItem">Confirm</b-button>
+          </div>
+        </b-modal>
         <img class="imgpreview" v-if="imageUrl" :src="imageUrl">
         <button class="addimage" @click="onPickFile">Upload Image</button>
         <input
@@ -17,9 +30,9 @@
       </div>
     </div>
     <div class="info-container">
-      <form @submit.prevent="CreateItem" class="info">
+      <form class="info" @submit.prevent="showModal=true">
         <h1>
-          <input type="text" placeholder="Enter title here..." v-model="title" required>
+          <input type="text" v-model="title" required>
         </h1>
 
         <h4>
@@ -54,7 +67,6 @@
           <i class="fa fa-edit" aria-hidden="true"></i> Edit
         </b-button>
       </form>
-      
     </div>
   </section>
 </template>
@@ -64,7 +76,7 @@
 import Phonecase from "@/components/Phonecase.vue";
 import firebase from "firebase";
 export default {
-  name: "Product",
+  name: "edit",
   components: {
     ThePhonecase: Phonecase
   },
@@ -76,10 +88,15 @@ export default {
       desc: "",
       imageUrl: "",
       username: "",
-      date: new Date()
+      date: new Date(),
+      showModal: false
     };
   },
+
   methods: {
+    CloseModal: function() {
+      this.$emit("hide");
+    },
     onPickFile() {
       this.$refs.fileInput.click();
     },
@@ -101,42 +118,25 @@ export default {
       console.log(this.image);
     },
 
-    CreateItem() {
-      if (user !== null) {
-        var storageRef = firebase.storage().ref();
+    ChangeItem() {
+      console.log(
+        firebase
+          .firestore()
+          .collection("Product")
+          .doc()
+      );
 
-        var mountainsRef = storageRef.child(`images/${this.filename}`);
-
-        mountainsRef.put(this.image).then(snapshot => {
-          snapshot.ref.getDownloadURL().then(downloadURL => {
-            const colref = firebase.firestore().collection("Product");
-
-            const saveData = {
-              title: this.title,
-              image: downloadURL,
-              tag: this.tag,
-              price: this.price,
-              desc: this.desc,
-              date: this.date,
-              username: this.$store.state.user
-            };
-
-            colref
-              .add(saveData)
-              .then(function(docRef) {
-                console.log(docRef.id);
-                // $router.push("/allcase"); <= ??
-                //Jump to other page
-              })
-              .catch(function(error) {
-                alert(error);
-              });
-          });
-        });
-        // this.$router.push("/allcase");
-      } else {
-        this.$router.push("/login");
-      }
+      // firebase
+      //   .firestore()
+      //   .collection("Product")
+      //   .doc(this.phonecase.id)
+      //   .set({
+      //     title: this.title,
+      //     tag: this.tag,
+      //     price: this.price,
+      //     desc: this.desc,
+      //     date: this.date
+      //   });
     }
   }
 };
@@ -147,15 +147,17 @@ export default {
 
 <style scoped>
 section {
-  position: relative;
-  width: 100vw;
+  width: 100%;
+  z-index: 999;
   height: 100vh;
-  margin: 4em auto;
-  z-index: 1;
+  position: fixed;
+  margin: 0;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
+  background-color: #fff;
+  padding: 0 0em;
+  top: 0;
+  left: 0;
 }
-
-
 
 h4 {
   color: #e91e63;
@@ -168,9 +170,7 @@ h4 {
   height: 100%;
   display: inline-block;
   margin: 0;
-
   border-radius: 6px 0px 0px 6px;
-  
 }
 .addimage {
   width: 100%;
@@ -181,7 +181,6 @@ h4 {
   border-radius: 2em;
   cursor: pointer;
   opacity: 0.9;
-  
 }
 .imgpreview {
   width: 50%;

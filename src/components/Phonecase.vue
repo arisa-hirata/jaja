@@ -1,6 +1,6 @@
 <template>
   <section class="phonecase">
-    <Edit v-if="isActive===true" @hide="isActive=false"/>
+    <!-- <Edit v-if="isActive===true" @hide="isActive=false"/> -->
     <div class="product-wrapper">
       <div class="close" @click="CloseModal">x</div>
 
@@ -16,9 +16,9 @@
               <i class="far fa-heart" aria-hidden="true" v-if="heart===true"></i>
               <i class="fa fa-heart" aria-hidden="true" v-if="heart===false"></i>
             </div>
-            <button class="editbtn" @click="openEdit">
+            <router-link to="/edit"><button class="editbtn" @click="openEdit">
               <i class="far fa-edit"></i>
-            </button>
+            </button></router-link>
             <button class="editbtn" @click="Delete">
               <i class="fa fa-trash" aria-hidden="true"></i>
             </button>

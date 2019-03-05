@@ -1,4 +1,5 @@
 <template>
+  
   <main>
     <form
       @submit.prevent="onSignin"
@@ -53,6 +54,18 @@
     </form>
 
     <div class="img-sec"></div>
+
+    <b-modal
+      v-model="badLogin"
+      title="Confirmation"
+    >
+      <b-container>
+        <p>Email / Password is incorrect.</p>
+      </b-container>
+      <div slot="modal-footer" class="w-100">
+      </div>
+    </b-modal>
+
   </main>
 </template>
 
@@ -63,12 +76,16 @@ export default {
   data: function() {
     return {
       email: "",
-      password: ""
+      password: "",
+      badLogin: badLogin
     };
   },
   computed: {
     user() {
       return this.$store.getters.user;
+    },
+    badLogin() {
+      return this.$store.state.badLogin;
     }
   },
   watch: {

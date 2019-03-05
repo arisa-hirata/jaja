@@ -2,6 +2,18 @@
   <section class="phonecase">
     <div class="add-photo">
       <div class="photo_main">
+        <b-modal
+          v-model="showModal"
+          title="Confirmation"
+        >
+          <b-container>
+            <p>Are you sure you want to create this item?</p>
+          </b-container>
+          <div slot="modal-footer" class="w-100">
+            <b-button size="sm" variant="primary" @click="showModal=false">Close</b-button>
+            <b-button size="sm" variant="primary" @click.prevent="CreateItem">Confirm</b-button>
+          </div>
+        </b-modal>
         <img class="imgpreview" v-if="imageUrl" :src="imageUrl">
         <button class="addimage" @click="onPickFile">Upload Image</button>
         <input
@@ -17,7 +29,7 @@
       </div>
     </div>
     <div class="info-container">
-      <form @submit.prevent="CreateItem" class="info">
+      <form @submit.prevent="showModal=true" class="info">
         <h1>
           <input type="text" placeholder="Enter title here..." v-model="title" required>
         </h1>
@@ -76,7 +88,8 @@ export default {
       price: "",
       desc: "",
       imageUrl: "",
-      date: new Date()
+      date: new Date(),
+      showModal: false
     };
   },
   methods: {

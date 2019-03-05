@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     cart: [],
-    user: null
+    user: null,
+    badLogin: false
   },
   mutations: {
     addToCart(state, p) {
@@ -48,7 +49,8 @@ export const store = new Vuex.Store({
         .catch(
           error => {
             console.log(error)
-            alert(error)
+            this.state.badLogin = true
+            console.log(this.state.badLogin)
           }
         )
     }
