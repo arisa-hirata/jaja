@@ -22,6 +22,9 @@
               <i class="fa fa-trash" aria-hidden="true"></i>
             </button>
             <h1>{{phonecase.title}}</h1>
+            <p>
+              <small>Designed by CEO</small>
+            </p>
             <h4>
               $
               <span>{{phonecase.price}}</span>
@@ -53,7 +56,7 @@
                 4.3
                 <small>/ 5</small>
               </h2>
-              <star-rating @rating-selected="setRating"></star-rating>
+              <star-rating style="width: 100%"></star-rating>
               <hr>
               <div id="rating">
                 <h4>Tap the stars</h4>
@@ -189,17 +192,24 @@ export default {
         });
     },
     Delete() {
-      alert("are you sure?");
-      const laRef = firebase.firestore().collection("Product");
-      batch.delete(laRef);
-
-      // Commit the batch
-      batch.commit().then(function() {
-        // [START_EXCLUDE]
-        done();
-        this.$router.push("/allcase");
-        // [END_EXCLUDE]
-      });
+      console.log(
+        firebase
+          .firestore()
+          .collection("Product")
+          .doc(this.phonecase.id).id
+      );
+      firebase
+        .firestore()
+        .collection("Product")
+        .doc(this.phonecase.id)
+        .delete()
+        .then(function() {
+          console.log("BYE");
+          // this.$router.push("/allcase"); <=ERROR
+        })
+        .catch(function(error) {
+          console.error("Error removing document: ", error);
+        });
     },
     clear() {
       this.$refs.form.reset();

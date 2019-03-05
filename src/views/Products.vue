@@ -69,12 +69,13 @@ export default {
   },
   data() {
     return {
+      userid: "",
+      username: "",
       title: "",
       tag: "",
       price: "",
       desc: "",
       imageUrl: "",
-      username: "",
       date: new Date()
     };
   },
@@ -101,41 +102,43 @@ export default {
     },
 
     CreateItem() {
-      if (user !== null) {
-        var storageRef = firebase.storage().ref();
+      console.log(firebase.auth().currentUser.m);
+      // if (user !== null) {
+      var storageRef = firebase.storage().ref();
 
-        var mountainsRef = storageRef.child(`images/${this.filename}`);
+      var mountainsRef = storageRef.child(`images/${this.filename}`);
 
-        mountainsRef.put(this.image).then(snapshot => {
-          snapshot.ref.getDownloadURL().then(downloadURL => {
-            const colref = firebase.firestore().collection("Product");
+      mountainsRef.put(this.image).then(snapshot => {
+        snapshot.ref.getDownloadURL().then(downloadURL => {
+          const colref = firebase.firestore().collection("Product");
 
-            const saveData = {
-              title: this.title,
-              image: downloadURL,
-              tag: this.tag,
-              price: this.price,
-              desc: this.desc,
-              date: this.date,
-              username: this.$store.state.user
-            };
+          const saveData = {
+            userid: firebase.auth().currentUser.m,
+            // username: this.$store.state.user,
+            title: this.title,
+            image: downloadURL,
+            tag: this.tag,
+            price: this.price,
+            desc: this.desc,
+            date: this.date
+          };
 
-            colref
-              .add(saveData)
-              .then(function(docRef) {
-                console.log(docRef.id);
-                // $router.push("/allcase"); <= ??
-                //Jump to other page
-              })
-              .catch(function(error) {
-                alert(error);
-              });
-          });
+          colref
+            .add(saveData)
+            .then(function(docRef) {
+              console.log(docRef.id);
+              // $router.push("/allcase"); <= ??
+              //Jump to other page
+            })
+            .catch(function(error) {
+              alert(error);
+            });
         });
-        // this.$router.push("/allcase");
-      } else {
-        this.$router.push("/login");
-      }
+      });
+      // this.$router.push("/allcase");
+      // } else {
+      //   this.$router.push("/login");
+      // }
     }
   }
 };
