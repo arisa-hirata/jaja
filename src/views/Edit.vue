@@ -17,20 +17,22 @@
         </b-modal>
         <img class="imgpreview" v-if="imageUrl" :src="imageUrl">
         <button class="addimage" @click="onPickFile">Upload Image</button>
+        <p v-if="errors.has('image')">{{ errors.first('image') }}</p>
         <input
           type="file"
-          name="myFile"
+          name="image"
           multiple
           style="display: none"
           ref="fileInput"
           accept="image/*"
           @change="onFilePicked"
-          required
+          v-validate="'required|image'"
         >
       </div>
     </div>
     <div class="info-container">
-      <form class="info" @submit.prevent="showModal=true">
+       <form @submit.prevent="validateBeforeSubmit" class="info">
+      <!-- <form class="info" @submit.prevent="showModal=true"> -->
         <h1>
           <input type="text" v-model="title" required>
         </h1>
@@ -53,19 +55,21 @@
           <textarea
             rows="4"
             cols="50"
-            name="comment"
+            name="description"
             form="usrform"
             v-model="desc"
             placeholder="Enter description here..."
-            required
+            v-validate="'required|max:150'"
+            :class="{'input': true, 'is-danger': errors.has('desc') }"
           ></textarea>
+           <br><span v-show="errors.has('description')" class="help is-danger">{{ errors.first('description') }}</span>
         </h6>
 
         <br>
 
-        <b-button class="addproduct" type="submit">
-          <i class="fa fa-edit" aria-hidden="true"></i> Edit
-        </b-button>
+        <button class="addproduct btn btn-fail" type="submit"  :disabled="errors.any()" >
+          <i class="fa fa-plus" aria-hidden="true"></i> Edit 
+        </button>
       </form>
     </div>
   </section>
@@ -73,6 +77,7 @@
 
 
 <script>
+import VeeValidate from 'vee-validate';
 import Phonecase from "@/components/Phonecase.vue";
 import firebase from "firebase";
 export default {
@@ -94,6 +99,17 @@ export default {
   },
 
   methods: {
+     validateBeforeSubmit() {
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          // eslint-disable-next-line
+          alert('Form Submitted!');
+          return;
+        }
+
+        alert('Please fill the required field');
+      });
+    },
     CloseModal: function() {
       this.$emit("hide");
     },
