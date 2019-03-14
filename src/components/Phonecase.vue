@@ -91,9 +91,9 @@
             <div class="review-block">
               <div class="row" v-for="r in AllReviews">
                 <div class="col-sm-3">
-                  <div class="review-block-name">
+                  <!-- <div class="review-block-name">
                     <a href="#">Tim</a>
-                  </div>
+                  </div> -->
                 </div>
                 <star-rating
                   v-bind:star-size="30"

@@ -26,8 +26,8 @@
                     >
                       <i class="fa fa-cart-arrow-down"></i> Add to cart
                     </span>
-                    <span class="product-grid__btn product-grid__view">
-                      <i class="fa fa-eye"></i> View more
+                    <span class="product-grid__btn product-grid__view" @click="ShowPhonecase(p)">
+                      <i class="fa fa-eye" ></i> View more
                     </span>
                   </div>
                 </div>

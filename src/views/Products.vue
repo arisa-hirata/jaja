@@ -257,4 +257,16 @@ h4 {
     width: 100%;
   }
 }
+input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid rgb(255, 157, 157);
+}
+textarea{
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid rgb(255, 157, 157);
+}
 </style>
