@@ -67,13 +67,10 @@
 
         <br>
 
-<<<<<<< HEAD
-        <button class="addproduct btn btn-fail" type="submit" :disabled="errors.any()">
-          <i class="fa fa-plus" aria-hidden="true"></i> Add Product
-=======
-        <button class="addproduct btn btn-fail"  :disabled="errors.any()" >
-          <i class="fa fa-plus" aria-hidden="true"></i> Add Product 
->>>>>>> a2c20d9c0445c11cec703c600595353f93f78eee
+        <button class="addproduct btn btn-fail" :disabled="errors.any()">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+
+           Add Product
         </button>
       </form>
     </div>
@@ -108,14 +105,10 @@ export default {
       this.$validator.validateAll().then(result => {
         if (result) {
           // eslint-disable-next-line
-<<<<<<< HEAD
-          alert("Form Submitted!");
-          return;
-=======
+
           // alert('Form Submitted!');
           // return;
-          this.showModal=true;
->>>>>>> a2c20d9c0445c11cec703c600595353f93f78eee
+          this.showModal = true;
         }
 
         alert("Please fill the required field");
