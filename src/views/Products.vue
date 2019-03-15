@@ -2,10 +2,7 @@
   <section class="phonecase">
     <div class="add-photo">
       <div class="photo_main">
-        <b-modal
-          v-model="showModal"
-          title="Confirmation"
-        >
+        <b-modal v-model="showModal" title="Confirmation">
           <b-container>
             <p>Are you sure you want to create this item?</p>
           </b-container>
@@ -27,12 +24,11 @@
           @change="onFilePicked"
           v-validate="'required|image'"
         >
-        
       </div>
     </div>
     <div class="info-container">
       <form @submit.prevent="validateBeforeSubmit" class="info">
-         <!-- <form @submit.prevent="showModal=true" class="info"> -->
+        <!-- <form @submit.prevent="showModal=true" class="info"> -->
         <h1>
           <input type="text" placeholder="Enter title here..." v-model="title" required>
         </h1>
@@ -45,7 +41,7 @@
         </h4>
         <span>
           <i class="fas fa-tag"/>
-          <input type="text" placeholder="Enter tag.." v-model="tag" required >
+          <input type="text" placeholder="Enter tag.." v-model="tag" required>
         </span>
 
         <br>
@@ -62,15 +58,18 @@
             v-validate="'required|max:150'"
             :class="{'input': true, 'is-danger': errors.has('desc') }"
           ></textarea>
-                <br><span v-show="errors.has('description')" class="help is-danger">{{ errors.first('description') }}</span>
+          <br>
+          <span
+            v-show="errors.has('description')"
+            class="help is-danger"
+          >{{ errors.first('description') }}</span>
         </h6>
 
         <br>
 
-        <button class="addproduct btn btn-fail" type="submit"  :disabled="errors.any()" >
-          <i class="fa fa-plus" aria-hidden="true"></i> Add Product 
+        <button class="addproduct btn btn-fail" type="submit" :disabled="errors.any()">
+          <i class="fa fa-plus" aria-hidden="true"></i> Add Product
         </button>
-        
       </form>
     </div>
   </section>
@@ -78,7 +77,7 @@
 
 
 <script>
-import VeeValidate from 'vee-validate';
+import VeeValidate from "vee-validate";
 import Phonecase from "@/components/Phonecase.vue";
 import firebase from "firebase";
 export default {
@@ -100,15 +99,15 @@ export default {
     };
   },
   methods: {
-     validateBeforeSubmit() {
-      this.$validator.validateAll().then((result) => {
+    validateBeforeSubmit() {
+      this.$validator.validateAll().then(result => {
         if (result) {
           // eslint-disable-next-line
-          alert('Form Submitted!');
+          alert("Form Submitted!");
           return;
         }
 
-        alert('Please fill the required field');
+        alert("Please fill the required field");
       });
     },
     onPickFile() {
@@ -263,7 +262,7 @@ input {
   background: transparent;
   border-bottom: 1px solid rgb(255, 157, 157);
 }
-textarea{
+textarea {
   border: 0;
   outline: 0;
   background: transparent;

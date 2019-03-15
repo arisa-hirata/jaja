@@ -16,9 +16,11 @@
               <i class="far fa-heart" aria-hidden="true" v-if="heart===true"></i>
               <i class="fa fa-heart" aria-hidden="true" v-if="heart===false"></i>
             </div>
-            <router-link to="/edit"><button class="editbtn" @click="openEdit">
-              <i class="far fa-edit"></i>
-            </button></router-link>
+            <router-link to="/edit">
+              <button class="editbtn" @click="openEdit">
+                <i class="far fa-edit"></i>
+              </button>
+            </router-link>
             <button class="editbtn" @click="Delete">
               <i class="fa fa-trash" aria-hidden="true"></i>
             </button>
@@ -93,7 +95,7 @@
                 <div class="col-sm-3">
                   <!-- <div class="review-block-name">
                     <a href="#">Tim</a>
-                  </div> -->
+                  </div>-->
                 </div>
                 <star-rating
                   v-bind:star-size="30"
@@ -101,6 +103,9 @@
                   :rating="r.rate"
                   read-only="true"
                 />
+                <button class="editbtn" @click="DeleteReview">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
                 <div class="col-sm-9">
                   <div class="review-block-description">{{r.desc}}</div>
                   <hr>
@@ -141,6 +146,12 @@ export default {
   },
   props: {
     phonecase: {
+      type: Object,
+      default() {
+        return [];
+      }
+    },
+    review: {
       type: Object,
       default() {
         return [];
@@ -211,6 +222,28 @@ export default {
         .delete()
         .then(function() {
           console.log("BYE");
+          // this.phonecase.push(); //?<=????????? I want to remove right after clicked
+          // this.$router.push("/allcase"); <=ERROR
+        })
+        .catch(function(error) {
+          console.error("Error removing document: ", error);
+        });
+    },
+    DeleteReview() {
+      console.log(
+        firebase
+          .firestore()
+          .collection("Review")
+          .doc(this.review.id)
+      );
+      firebase
+        .firestore()
+        .collection("Review")
+        .doc(this.phonecase.id)
+        .delete()
+        .then(function() {
+          console.log("BYE");
+          // this.phonecase.push(); //?<=????????? I want to remove right after clicked
           // this.$router.push("/allcase"); <=ERROR
         })
         .catch(function(error) {

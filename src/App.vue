@@ -26,7 +26,13 @@
           </router-link>
           <router-link class="login-btn" to="/login">Login</router-link>
           <router-link class="signup-btn" to="/signup">Signup</router-link>
-          <button type="button" @click="onSignOut" class="login-btn">Sign Out</button>
+          <button
+            type="button"
+            @click="onSignOut"
+            class="login-btn"
+            v-show="authorized"
+            key="tt"
+          >Sign Out</button>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -44,6 +50,11 @@ export default {
   name: "App",
   components: {
     "app-footer": Footer
+  },
+  data() {
+    return {
+      show: false
+    };
   },
   methods: {
     onSignOut() {
