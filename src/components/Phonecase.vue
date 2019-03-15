@@ -16,11 +16,13 @@
               <i class="far fa-heart" aria-hidden="true" v-if="heart===true"></i>
               <i class="fa fa-heart" aria-hidden="true" v-if="heart===false"></i>
             </div>
+
             <router-link to="/edit">
-              <button class="editbtn" @click="openEdit">
+              <button class="editbtn" @click="openEdit(phonecase)">
                 <i class="far fa-edit"></i>
               </button>
             </router-link>
+
             <button class="editbtn" @click="Delete">
               <i class="fa fa-trash" aria-hidden="true"></i>
             </button>
@@ -42,7 +44,7 @@
 
             <h6>{{phonecase.desc}}</h6>
             <br>
-            <b-button class="add-to-cart">
+            <b-button class="add-to-cart" @click="addToCart(phonecase)">
               <i class="fa fa-cart-arrow-down"></i> Add to cart
             </b-button>
           </div>
@@ -184,8 +186,9 @@ export default {
     CloseModal: function() {
       this.$emit("hide");
     },
-    openEdit: function() {
-      this.isActive = !this.isActive;
+    openEdit(phonecase) {
+      // this.isActive = !this.isActive;
+      this.$store.commit("toEdit", phonecase);
     },
     CreateReview() {
       const colref = firebase.firestore().collection("Review");
@@ -249,6 +252,8 @@ export default {
         .catch(function(error) {
           console.error("Error removing document: ", error);
         });
+      // location.reload();
+      this.$router.push("/allcase");
     },
     clear() {
       this.$refs.form.reset();
@@ -256,6 +261,10 @@ export default {
     ShowReviews: function(r) {
       this.selectedItem = r;
       this.isActive = !this.isActive;
+    },
+    addToCart(phonecase) {
+      this.$store.commit("addToCart", phonecase);
+      this.$router.push("/cart");
     }
   }
 };

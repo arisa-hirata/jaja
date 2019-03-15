@@ -7,12 +7,17 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     cart: [],
+    editing: [],
     user: null,
     badLogin: false
   },
   mutations: {
     addToCart(state, p) {
       state.cart.push(p)
+    },
+    toEdit(state, phonecase) {
+      state.editing.pop();
+      state.editing.push(phonecase)
     },
     setUser(state, payload) {
       state.user = payload

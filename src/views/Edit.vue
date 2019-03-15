@@ -16,6 +16,7 @@
           </div>
         </b-modal>
         <img class="imgpreview" v-if="imageUrl" :src="imageUrl">
+        <img v-for="e in editing" class="imgpreview" v-else :src="e.image">
         <button class="addimage" @click="onPickFile">Upload Image</button>
         <p v-if="errors.has('image')">{{ errors.first('image') }}</p>
         <input
@@ -30,22 +31,22 @@
         >
       </div>
     </div>
-    <div class="info-container">
+
+    <div class="info-container" v-for="e in editing">
        <form @submit.prevent="validateBeforeSubmit" class="info">
       <!-- <form class="info" @submit.prevent="showModal=true"> -->
         <h1>
-          <input type="text" v-model="title" required>
+          <input type="text" v-model="e.title" required>
         </h1>
-
         <h4>
           $
           <span>
-            <input type="number" placeholder="0.00" v-model="price" required>
+            <input type="number" placeholder="0.00" v-model="e.price" required>
           </span>
         </h4>
         <span>
           <i class="fas fa-tag"/>
-          <input type="text" placeholder="Enter tag.." v-model="tag" required>
+          <input type="text" placeholder="Enter tag.." v-model="e.tag" required>
         </span>
 
         <br>
@@ -57,7 +58,7 @@
             cols="50"
             name="description"
             form="usrform"
-            v-model="desc"
+            v-model="e.desc"
             placeholder="Enter description here..."
             v-validate="'required|max:150'"
             :class="{'input': true, 'is-danger': errors.has('desc') }"
@@ -153,6 +154,14 @@ export default {
       //     desc: this.desc,
       //     date: this.date
       //   });
+    }
+  },
+  // mounted() {
+  //   this.title = this.title
+  // }
+  computed: {
+    editing() {
+      return this.$store.state.editing;
     }
   }
 };
