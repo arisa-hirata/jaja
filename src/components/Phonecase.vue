@@ -105,7 +105,7 @@
                   :rating="r.rate"
                   read-only="true"
                 />
-                <button class="editbtn" @click="DeleteReview">
+                <button class="editbtn" @click="DeleteReview(r.id)">
                   <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
                 <div class="col-sm-9">
@@ -172,7 +172,8 @@ export default {
           let data = {
             username: doc.data().username,
             rate: doc.data().rate,
-            desc: doc.data().desc
+            desc: doc.data().desc,
+            id: doc.id
           };
           this.AllReviews.push(data);
         });
@@ -205,6 +206,7 @@ export default {
         .add(saveData)
         .then(docRef => {
           console.log(docRef.id);
+          saveData.id = docRef.id;
           this.AllReviews.push(saveData);
         })
         .catch(function(error) {
@@ -232,17 +234,18 @@ export default {
           console.error("Error removing document: ", error);
         });
     },
-    DeleteReview() {
+    DeleteReview(id) {
+      console.log(id);
       console.log(
         firebase
           .firestore()
           .collection("Review")
-          .doc(this.review.id)
+          .doc(id)
       );
       firebase
         .firestore()
         .collection("Review")
-        .doc(this.phonecase.id)
+        .doc(id)
         .delete()
         .then(function() {
           console.log("BYE");

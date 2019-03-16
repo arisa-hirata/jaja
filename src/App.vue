@@ -24,14 +24,13 @@
           <router-link class="login-btn" to="/cart">
             <i class="fas fa-shopping-cart"></i>
           </router-link>
-          <router-link class="login-btn" to="/login">Login</router-link>
-          <router-link class="signup-btn" to="/signup">Signup</router-link>
+          <router-link v-if="$store.state.user === null" class="login-btn" to="/login">Login</router-link>
+          <router-link v-if="$store.state.user === null" class="signup-btn" to="/signup">Signup</router-link>
           <button
             type="button"
+            v-if="$store.state.user !== null"
             @click="onSignOut"
             class="login-btn"
-            v-show="authorized"
-            key="tt"
           >Sign Out</button>
         </b-navbar-nav>
       </b-collapse>
@@ -52,9 +51,10 @@ export default {
     "app-footer": Footer
   },
   data() {
-    return {
-      show: false
-    };
+    return {};
+  },
+  created() {
+    console.log(this.$store.state);
   },
   methods: {
     onSignOut() {
