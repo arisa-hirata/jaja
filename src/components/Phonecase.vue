@@ -18,12 +18,16 @@
             </div>
 
             <router-link to="/edit">
-              <button class="editbtn" @click="openEdit(phonecase)">
+              <button
+                class="editbtn"
+                @click="openEdit(phonecase)"
+                v-if="this.phonecase.userid === currentUser"
+              >
                 <i class="far fa-edit"></i>
               </button>
             </router-link>
 
-            <button class="editbtn" @click="Delete">
+            <button class="editbtn" @click="Delete" v-if="this.phonecase.userid === currentUser">
               <i class="fa fa-trash" aria-hidden="true"></i>
             </button>
             <h1>{{phonecase.title}}</h1>
@@ -161,6 +165,10 @@ export default {
     }
   },
   created() {
+    const currentUser = firebase.auth().currentUser.m;
+    console.log("laaaaaa", currentUser);
+    console.log("hahaha!", this.phonecase.userid);
+
     firebase
       .firestore()
       .collection("Review")
@@ -179,6 +187,7 @@ export default {
         });
       });
   },
+
   methods: {
     ChangeHeart: function() {
       this.heart = !this.heart;
@@ -208,6 +217,9 @@ export default {
           console.log(docRef.id);
           saveData.id = docRef.id;
           this.AllReviews.push(saveData);
+          console.log(firebase.auth().currentUser.m);
+          console.log("hahaha!", this.phonecase.userid);
+          console.log(this.currentUser);
         })
         .catch(function(error) {
           alert(error);
@@ -249,8 +261,6 @@ export default {
         .delete()
         .then(function() {
           console.log("BYE");
-          // this.phonecase.push(); //?<=????????? I want to remove right after clicked
-          // this.$router.push("/allcase"); <=ERROR
         })
         .catch(function(error) {
           console.error("Error removing document: ", error);
@@ -444,5 +454,10 @@ h4 {
   cursor: pointer;
   width: 2em;
   opacity: 0.9;
+  border-style: none;
+  transition: 0.5s;
+}
+.editbtn:hover {
+  color: #e91e63;
 }
 </style>

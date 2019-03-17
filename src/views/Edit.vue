@@ -176,6 +176,7 @@ export default {
         .catch(function(error) {
           console.error("Error writing document: ", error);
         });
+      this.$router.push("/allcase");
     }
   },
   // mounted() {

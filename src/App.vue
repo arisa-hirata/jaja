@@ -55,6 +55,7 @@ export default {
   },
   created() {
     console.log(this.$store.state);
+    console.log("hello", id);
   },
   methods: {
     onSignOut() {
