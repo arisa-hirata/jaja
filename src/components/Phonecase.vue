@@ -21,13 +21,18 @@
               <button
                 class="editbtn"
                 @click="openEdit(phonecase)"
-                v-if="this.phonecase.userid === currentUser"
               >
+                            <!-- <button
+                class="editbtn"
+                @click="openEdit(phonecase)"
+                v-if="this.phonecase.userid === currentUser"
+              > -->
                 <i class="far fa-edit"></i>
               </button>
             </router-link>
 
-            <button class="editbtn" @click="Delete" v-if="this.phonecase.userid === currentUser">
+            <button class="editbtn" @click="Delete">
+              <!-- <button class="editbtn" @click="Delete" v-if="this.phonecase.userid === currentUser"> -->
               <i class="fa fa-trash" aria-hidden="true"></i>
             </button>
             <h1>{{phonecase.title}}</h1>
