@@ -1,6 +1,6 @@
 <template>
   <section class="allcase">
-    <ThePhonecase v-if="isActive===true" :phonecase="selectedItem" @hide="isActive=false"/>
+    <ThePhonecase :getPhonecase="GetPhonecases()" v-if="isActive===true" :phonecase="selectedItem" @hide="isActive=false"/>
 
     <div class="wrapper">
       <div class="content">
@@ -62,7 +62,12 @@ export default {
     };
   },
   created() {
-    firebase
+    this.GetPhonecases();
+  },
+  methods: {
+    GetPhonecases:function(){
+      var arr=[];
+      firebase
       .firestore()
       .collection("Product")
       .orderBy("date")
@@ -78,11 +83,11 @@ export default {
             price: doc.data().price,
             desc: doc.data().desc
           };
-          this.phoneCases.push(data);
+          arr.push(data);
         });
+        this.phoneCases = arr;
       });
-  },
-  methods: {
+    },
     ShowPhonecase: function(p) {
       this.selectedItem = p;
       this.isActive = !this.isActive;

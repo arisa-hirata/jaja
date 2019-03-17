@@ -158,6 +158,12 @@ export default {
       default() {
         return [];
       }
+    },
+    getPhonecase: {
+      type: Function,
+      default() {
+        return null;
+      }
     }
   },
   created() {
@@ -225,10 +231,11 @@ export default {
         .collection("Product")
         .doc(this.phonecase.id)
         .delete()
-        .then(function() {
+        .then(()=>{
           console.log("BYE");
           // this.phonecase.push(); //?<=????????? I want to remove right after clicked
-          // this.$router.push("/allcase"); <=ERROR
+          this.CloseModal();
+          this.getPhonecase();
         })
         .catch(function(error) {
           console.error("Error removing document: ", error);
