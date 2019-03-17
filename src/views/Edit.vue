@@ -123,7 +123,7 @@ export default {
           return;
         }
 
-        alert("Please fill the required field");
+        // alert("Please fill the required field");
       });
     },
     CloseModal: function() {

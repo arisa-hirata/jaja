@@ -58,6 +58,7 @@
     <b-modal
       v-model="badLogin"
       title="Confirmation"
+      
     >
       <b-container>
         <p>Email / Password is incorrect.</p>
