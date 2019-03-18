@@ -112,9 +112,9 @@
                   v-bind:star-size="30"
                   v-bind:increment="0.5"
                   :rating="r.rate"
-                  read-only="true"
+                  :read-only=true
                 />
-                <button class="editbtn" @click="DeleteReview(r.id)">
+                <button class="editbtn" @click="DeleteReview(r)">
                   <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
                 <div class="col-sm-9">
@@ -149,10 +149,11 @@ export default {
       isActive: false,
       heart: true,
       username: "",
-      rate: "",
+      rate: 0,
       desc: "",
       date: new Date(),
-      AllReviews: []
+      AllReviews: [],
+      Reviews: []
     };
   },
   props: {
@@ -163,7 +164,7 @@ export default {
       }
     },
     review: {
-      type: Object,
+      type: Array,
       default() {
         return [];
       }
@@ -176,30 +177,35 @@ export default {
     }
   },
   created() {
-    const currentUser = firebase.auth().currentUser.m;
-    console.log("laaaaaa", currentUser);
-    console.log("hahaha!", this.phonecase.userid);
-
-    firebase
-      .firestore()
-      .collection("Review")
-      .where("productid", "==", this.phonecase.id)
-      .get()
-      .then(querySnapshot => {
-        this.loading = false;
-        querySnapshot.forEach(doc => {
-          let data = {
-            username: doc.data().username,
-            rate: doc.data().rate,
-            desc: doc.data().desc,
-            id: doc.id
-          };
-          this.AllReviews.push(data);
-        });
-      });
+    this.GetReviews();
   },
 
   methods: {
+    GetReviews:function(){
+      const currentUser = firebase.auth().currentUser;
+      console.log("laaaaaa", currentUser);
+      console.log("hahaha!", this.phonecase.userid);
+      var reviewarr=[];
+
+      firebase
+        .firestore()
+        .collection("Review")
+        .where("productid", "==", this.phonecase.id)
+        .get()
+        .then(querySnapshot => {
+          this.loading = false;
+          querySnapshot.forEach(doc => {
+            let data = {
+              username: doc.data().username,
+              rate: doc.data().rate,
+              desc: doc.data().desc,
+              id: doc.id
+            };
+            reviewarr.push(data);
+          });
+          this.AllReviews = reviewarr;
+      });
+    },
     ChangeHeart: function() {
       this.heart = !this.heart;
     },
@@ -224,7 +230,7 @@ export default {
 
       colref
         .add(saveData)
-        .then(docRef => {
+        .then((docRef) => {
           console.log(docRef.id);
           saveData.id = docRef.id;
           this.AllReviews.push(saveData);
@@ -258,18 +264,18 @@ export default {
           console.error("Error removing document: ", error);
         });
     },
-    DeleteReview(id) {
-      console.log(id);
+    DeleteReview(r) {
+      // console.log(id);
       console.log(
         firebase
           .firestore()
           .collection("Review")
-          .doc(id)
+          .doc(r.id)
       );
       firebase
         .firestore()
         .collection("Review")
-        .doc(id)
+        .doc(r.id)
         .delete()
         .then(function() {
           console.log("BYE");
@@ -277,8 +283,10 @@ export default {
         .catch(function(error) {
           console.error("Error removing document: ", error);
         });
+
+          this.AllReviews.pop(r);
       // location.reload();
-      this.$router.push("/allcase");
+      // this.$router.push("/allcase");
     },
     clear() {
       this.$refs.form.reset();
