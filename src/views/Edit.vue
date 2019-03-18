@@ -15,7 +15,7 @@
           </div>
         </b-modal>
         <img class="imgpreview" v-if="image" :src="image">
-        <img v-for="e in editing" class="imgpreview" v-else :src="image">
+        <img class="imgpreview" v-else :src="image">
         <button class="addimage" @click="onPickFile">Upload Image</button>
         <p v-if="errors.has('image')">{{ errors.first('image') }}</p>
         <input
@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div class="info-container" v-for="e in editing">
+    <div class="info-container">
       <form @submit.prevent="validateBeforeSubmit" class="info">
         <!-- <form class="info" @submit.prevent="showModal=true"> -->
         <h1>
