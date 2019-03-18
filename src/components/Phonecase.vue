@@ -18,21 +18,18 @@
             </div>
 
             <router-link to="/edit">
+              <!-- <button class="editbtn" @click="openEdit(phonecase)"> -->
               <button
                 class="editbtn"
                 @click="openEdit(phonecase)"
+                v-if="phonecase.userid === currentUser"
               >
-                            <!-- <button
-                class="editbtn"
-                @click="openEdit(phonecase)"
-                v-if="this.phonecase.userid === currentUser"
-              > -->
                 <i class="far fa-edit"></i>
               </button>
             </router-link>
 
-            <button class="editbtn" @click="Delete">
-              <!-- <button class="editbtn" @click="Delete" v-if="this.phonecase.userid === currentUser"> -->
+            <!-- <button class="editbtn" @click="Delete"> -->
+            <button class="editbtn" @click="Delete" v-if="phonecase.userid === currentUser">
               <i class="fa fa-trash" aria-hidden="true"></i>
             </button>
             <h1>{{phonecase.title}}</h1>
@@ -178,7 +175,16 @@ export default {
   created() {
     const currentUser = firebase.auth().currentUser.m;
     console.log("laaaaaa", currentUser);
-    console.log("hahaha!", this.phonecase.userid);
+    console.log("hahaha!", this.currentUser);
+    this.currentUser = currentUser;
+
+    console.log(
+      "lelele",
+      firebase
+        .firestore()
+        .collection("Review")
+        .doc().id
+    );
 
     firebase
       .firestore()
@@ -216,6 +222,7 @@ export default {
 
       const saveData = {
         productid: this.phonecase.id,
+        userid: firebase.auth().currentUser.m,
         username: this.username,
         rate: this.rate,
         desc: this.desc,
@@ -248,7 +255,7 @@ export default {
         .collection("Product")
         .doc(this.phonecase.id)
         .delete()
-        .then(()=>{
+        .then(() => {
           console.log("BYE");
           // this.phonecase.push(); //?<=????????? I want to remove right after clicked
           this.CloseModal();
