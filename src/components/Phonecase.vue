@@ -179,14 +179,6 @@ export default {
     console.log("hahaha!", this.currentUser);
     this.currentUser = currentUser;
 
-    console.log(
-      "lelele",
-      firebase
-        .firestore()
-        .collection("Review")
-        .doc().id
-    );
-
     firebase
       .firestore()
       .collection("Review")
@@ -285,7 +277,6 @@ export default {
         .delete()
         .then(() => {
           console.log("BYE");
-          // this.phonecase.push(); //?<=????????? I want to remove right after clicked
           this.CloseModal();
           this.getPhonecase();
         })
