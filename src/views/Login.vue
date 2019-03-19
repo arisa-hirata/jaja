@@ -58,7 +58,6 @@
     <b-modal
       v-model="badLogin"
       title="Confirmation"
-      
     >
       <b-container>
         <p>Email / Password is incorrect.</p>
@@ -67,11 +66,17 @@
       </div>
     </b-modal>
 
+    <div id="badCreate" v-if="$store.state.badCreate === true">
+        <span @click="byeCreate">x</span>
+        <h2>You need to be logged in to create a product!</h2>
+    </div>
+
   </main>
 </template>
 
 <script>
 import firebase from "firebase";
+
 export default {
   name: "SignIn",
   data: function() {
@@ -87,6 +92,10 @@ export default {
     },
     badLogin() {
       return this.$store.state.badLogin;
+    },
+    badCreate() {
+      return this.$store.state.badCreate;
+      this.byeCreate(false);
     }
   },
   watch: {
@@ -102,7 +111,13 @@ export default {
         email: this.email,
         password: this.password
       });
-    }
+    },
+    byeCreate(){
+      this.$store.state.badCreate = false;
+    },
+    // byeLogin(){
+    //   this.$store.state.badLogin = false;
+    // },
     // SignIn: function() {
     //   firebase
     //     .auth()
@@ -372,5 +387,25 @@ h6 {
   -ms-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
+}
+
+#badCreate {
+  width: 400px;
+  padding: 10px;
+  font-size: 10px;
+  color: #ff6b6b;
+  background-color: rgba(255, 107, 107, 0.1);
+  position: absolute;
+  top: 10%;
+  left: 40%;
+}
+
+#badCreate span {
+  font-size: 30px;
+  float: right;
+  cursor: pointer;
+}
+#badCreate span:hover {
+  color: rgba(255, 107, 107, 0.5);
 }
 </style>

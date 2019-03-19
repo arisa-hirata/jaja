@@ -9,7 +9,8 @@ export const store = new Vuex.Store({
     cart: [],
     editing: [],
     user: null,
-    badLogin: false
+    badLogin: false,
+    badCreate: false
   },
   mutations: {
     addToCart(state, p) {
@@ -21,7 +22,7 @@ export const store = new Vuex.Store({
     },
     setUser(state, payload) {
       state.user = payload
-    }
+    },
   },
   actions: {
     signUserUp({ commit }, payload) {

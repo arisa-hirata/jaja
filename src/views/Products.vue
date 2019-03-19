@@ -11,7 +11,7 @@
           </b-container>
           <div slot="modal-footer" class="w-100">
             <b-button size="sm" variant="primary" @click="showModal=false">Close</b-button>
-            <b-button size="sm" variant="primary" @click.prevent="CreateItem">Confirm</b-button>
+            <b-button size="sm" variant="primary" @click.prevent="CreateConfirm">Confirm</b-button>
           </div>
         </b-modal>
         <img class="imgpreview" v-if="imageUrl" :src="imageUrl">
@@ -172,8 +172,17 @@ export default {
       // else {
       //   this.$router.push("/login");
       // }
+    },
+    CreateConfirm() {
+      if(this.$store.state.user === null){
+        this.$router.push("/login");
+        this.$store.state.badCreate=true;
+      } else {
+        this.CreateItem();
+      }
     }
   }
+
 };
 </script>
 
