@@ -1,5 +1,17 @@
 # jaja
 
+
+![My-Movie](https://user-images.githubusercontent.com/32582917/60464815-68966600-9c04-11e9-98bf-2c97ae8b78bb.gif)
+
+
+
+
+
+
+
+
+
+
 ## Project setup
 ```
 npm install
